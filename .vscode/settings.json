@@ -1,0 +1,15 @@
+{
+  "eslint.run": "onType",
+  "eslint.autoFixOnSave": true,
+  "emmet.includeLanguages": {
+    "vue": "html"
+  },
+  "vetur.format.defaultFormatter.html": "none",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.postcss": "prettier",
+  "vetur.format.defaultFormatter.scss": "prettier",
+  "vetur.format.defaultFormatter.less": "prettier",
+  "vetur.format.defaultFormatter.stylus": "stylus-supremacy",
+  "vetur.format.defaultFormatter.js": "none",
+  "vetur.format.defaultFormatter.ts": "none"
+}

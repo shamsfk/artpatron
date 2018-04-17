@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "name": "Item 1",
+      "author": "Monet",
+      "img": "http://blog.art.com/artwiki/wp-content/uploads/2014/05/claude-monet-tulip-fields-impressionism-art-print.jpg"
+    }
+  ]
+}
