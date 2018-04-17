@@ -2,11 +2,13 @@ pragma solidity ^0.4.18;
 
 contract ArtPatronData {
     struct Item {
-        string name;
+        string title;
+        uint authorId;
+        uint holderId;
         uint creationDate;
         uint currentBid;
         uint patronshipDate;
-        uint patronshipDuration;
+        uint tabletDueDate;
         address patronAddress;
     }
 

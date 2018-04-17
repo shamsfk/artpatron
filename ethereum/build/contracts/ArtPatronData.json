@@ -1,24 +1,24 @@
 {
   "contractName": "ArtPatronData",
   "abi": [],
-  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a723058206741e59cfea0ac8611917a2394828f7b9c50f970314728b5ad8c965a97f120330029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a723058206741e59cfea0ac8611917a2394828f7b9c50f970314728b5ad8c965a97f120330029",
-  "sourceMap": "26:553:0:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "26:553:0:-;;;;;",
-  "source": "pragma solidity ^0.4.18;\n\ncontract ArtPatronData {\n    struct Item {\n        string name;\n        uint creationDate;\n        uint currentBid;\n        uint patronshipDate;\n        uint patronshipDuration;\n        address patronAddress;\n    }\n\n    struct Author {\n        string name;\n        uint birthDate;\n    }\n\n    struct Holder {\n        string name;\n        uint16 countryId;\n    }\n\n    Item[] internal items;\n    Author[] internal authors;\n    Holder[] internal holders;\n\n    mapping (uint => uint) internal itemToAuthor;\n    mapping (uint => uint) internal itemToHolder;\n}\n",
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582090c7ff2b98f679231e0d8b7032957e85c10a2aa2c42e8d27febc2fe3a75247400029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a7230582090c7ff2b98f679231e0d8b7032957e85c10a2aa2c42e8d27febc2fe3a75247400029",
+  "sourceMap": "26:595:1:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:595:1:-;;;;;",
+  "source": "pragma solidity ^0.4.18;\n\ncontract ArtPatronData {\n    struct Item {\n        string title;\n        uint authorId;\n        uint holderId;\n        uint creationDate;\n        uint currentBid;\n        uint patronshipDate;\n        uint tabletDueDate;\n        address patronAddress;\n    }\n\n    struct Author {\n        string name;\n        uint birthDate;\n    }\n\n    struct Holder {\n        string name;\n        uint16 countryId;\n    }\n\n    Item[] internal items;\n    Author[] internal authors;\n    Holder[] internal holders;\n\n    mapping (uint => uint) internal itemToAuthor;\n    mapping (uint => uint) internal itemToHolder;\n}\n",
   "sourcePath": "/home/shamsfk/projects/artpatron/ethereum/contracts/ArtPatronData.sol",
   "ast": {
     "absolutePath": "/home/shamsfk/projects/artpatron/ethereum/contracts/ArtPatronData.sol",
     "exportedSymbols": {
       "ArtPatronData": [
-        42
+        89
       ]
     },
-    "id": 43,
+    "id": 90,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1,
+        "id": 44,
         "literals": [
           "solidity",
           "^",
@@ -26,7 +26,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:0"
+        "src": "0:24:1"
       },
       {
         "baseContracts": [],
@@ -34,24 +34,24 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 42,
+        "id": 89,
         "linearizedBaseContracts": [
-          42
+          89
         ],
         "name": "ArtPatronData",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "ArtPatronData.Item",
-            "id": 14,
+            "id": 61,
             "members": [
               {
                 "constant": false,
-                "id": 3,
-                "name": "name",
+                "id": 46,
+                "name": "title",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "77:11:0",
+                "scope": 61,
+                "src": "77:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -59,10 +59,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 2,
+                  "id": 45,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "77:6:0",
+                  "src": "77:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -73,11 +73,63 @@
               },
               {
                 "constant": false,
-                "id": 5,
+                "id": 48,
+                "name": "authorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 61,
+                "src": "99:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 47,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "99:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50,
+                "name": "holderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 61,
+                "src": "122:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 49,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "122:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 52,
                 "name": "creationDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "98:17:0",
+                "scope": 61,
+                "src": "145:17:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -85,10 +137,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 4,
+                  "id": 51,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "98:4:0",
+                  "src": "145:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -99,11 +151,11 @@
               },
               {
                 "constant": false,
-                "id": 7,
+                "id": 54,
                 "name": "currentBid",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "125:15:0",
+                "scope": 61,
+                "src": "172:15:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -111,10 +163,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 6,
+                  "id": 53,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "125:4:0",
+                  "src": "172:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -125,11 +177,11 @@
               },
               {
                 "constant": false,
-                "id": 9,
+                "id": 56,
                 "name": "patronshipDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "150:19:0",
+                "scope": 61,
+                "src": "197:19:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -137,10 +189,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 8,
+                  "id": 55,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "150:4:0",
+                  "src": "197:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -151,11 +203,11 @@
               },
               {
                 "constant": false,
-                "id": 11,
-                "name": "patronshipDuration",
+                "id": 58,
+                "name": "tabletDueDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "179:23:0",
+                "scope": 61,
+                "src": "226:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -163,10 +215,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 10,
+                  "id": 57,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "179:4:0",
+                  "src": "226:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -177,11 +229,11 @@
               },
               {
                 "constant": false,
-                "id": 13,
+                "id": 60,
                 "name": "patronAddress",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "212:21:0",
+                "scope": 61,
+                "src": "254:21:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -189,10 +241,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 12,
+                  "id": 59,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "212:7:0",
+                  "src": "254:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -204,21 +256,21 @@
             ],
             "name": "Item",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "55:185:0",
+            "scope": 89,
+            "src": "55:227:1",
             "visibility": "public"
           },
           {
             "canonicalName": "ArtPatronData.Author",
-            "id": 19,
+            "id": 66,
             "members": [
               {
                 "constant": false,
-                "id": 16,
+                "id": 63,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 19,
-                "src": "270:11:0",
+                "scope": 66,
+                "src": "312:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -226,10 +278,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 15,
+                  "id": 62,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "270:6:0",
+                  "src": "312:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -240,11 +292,11 @@
               },
               {
                 "constant": false,
-                "id": 18,
+                "id": 65,
                 "name": "birthDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 19,
-                "src": "291:14:0",
+                "scope": 66,
+                "src": "333:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -252,10 +304,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 17,
+                  "id": 64,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "291:4:0",
+                  "src": "333:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -267,21 +319,21 @@
             ],
             "name": "Author",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "246:66:0",
+            "scope": 89,
+            "src": "288:66:1",
             "visibility": "public"
           },
           {
             "canonicalName": "ArtPatronData.Holder",
-            "id": 24,
+            "id": 71,
             "members": [
               {
                 "constant": false,
-                "id": 21,
+                "id": 68,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 24,
-                "src": "342:11:0",
+                "scope": 71,
+                "src": "384:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -289,10 +341,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 20,
+                  "id": 67,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "342:6:0",
+                  "src": "384:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -303,11 +355,11 @@
               },
               {
                 "constant": false,
-                "id": 23,
+                "id": 70,
                 "name": "countryId",
                 "nodeType": "VariableDeclaration",
-                "scope": 24,
-                "src": "363:16:0",
+                "scope": 71,
+                "src": "405:16:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -315,10 +367,10 @@
                   "typeString": "uint16"
                 },
                 "typeName": {
-                  "id": 22,
+                  "id": 69,
                   "name": "uint16",
                   "nodeType": "ElementaryTypeName",
-                  "src": "363:6:0",
+                  "src": "405:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint16",
                     "typeString": "uint16"
@@ -330,42 +382,42 @@
             ],
             "name": "Holder",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "318:68:0",
+            "scope": 89,
+            "src": "360:68:1",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 27,
+            "id": 74,
             "name": "items",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "392:21:0",
+            "scope": 89,
+            "src": "434:21:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Item_$14_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Item_$61_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Item storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 25,
+                "id": 72,
                 "name": "Item",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 14,
-                "src": "392:4:0",
+                "referencedDeclaration": 61,
+                "src": "434:4:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Item_$14_storage_ptr",
+                  "typeIdentifier": "t_struct$_Item_$61_storage_ptr",
                   "typeString": "struct ArtPatronData.Item storage pointer"
                 }
               },
-              "id": 26,
+              "id": 73,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "392:6:0",
+              "src": "434:6:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Item_$14_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Item_$61_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Item storage ref[] storage pointer"
               }
             },
@@ -374,36 +426,36 @@
           },
           {
             "constant": false,
-            "id": 30,
+            "id": 77,
             "name": "authors",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "419:25:0",
+            "scope": 89,
+            "src": "461:25:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Author_$19_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Author_$66_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Author storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 28,
+                "id": 75,
                 "name": "Author",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 19,
-                "src": "419:6:0",
+                "referencedDeclaration": 66,
+                "src": "461:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Author_$19_storage_ptr",
+                  "typeIdentifier": "t_struct$_Author_$66_storage_ptr",
                   "typeString": "struct ArtPatronData.Author storage pointer"
                 }
               },
-              "id": 29,
+              "id": 76,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "419:8:0",
+              "src": "461:8:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Author_$19_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Author_$66_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Author storage ref[] storage pointer"
               }
             },
@@ -412,36 +464,36 @@
           },
           {
             "constant": false,
-            "id": 33,
+            "id": 80,
             "name": "holders",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "450:25:0",
+            "scope": 89,
+            "src": "492:25:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Holder_$24_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Holder_$71_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Holder storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 31,
+                "id": 78,
                 "name": "Holder",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 24,
-                "src": "450:6:0",
+                "referencedDeclaration": 71,
+                "src": "492:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Holder_$24_storage_ptr",
+                  "typeIdentifier": "t_struct$_Holder_$71_storage_ptr",
                   "typeString": "struct ArtPatronData.Holder storage pointer"
                 }
               },
-              "id": 32,
+              "id": 79,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "450:8:0",
+              "src": "492:8:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Holder_$24_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Holder_$71_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Holder storage ref[] storage pointer"
               }
             },
@@ -450,11 +502,11 @@
           },
           {
             "constant": false,
-            "id": 37,
+            "id": 84,
             "name": "itemToAuthor",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "482:44:0",
+            "scope": 89,
+            "src": "524:44:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -462,28 +514,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 36,
+              "id": 83,
               "keyType": {
-                "id": 34,
+                "id": 81,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "491:4:0",
+                "src": "533:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "482:22:0",
+              "src": "524:22:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 35,
+                "id": 82,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "499:4:0",
+                "src": "541:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -495,11 +547,11 @@
           },
           {
             "constant": false,
-            "id": 41,
+            "id": 88,
             "name": "itemToHolder",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "532:44:0",
+            "scope": 89,
+            "src": "574:44:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -507,28 +559,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 40,
+              "id": 87,
               "keyType": {
-                "id": 38,
+                "id": 85,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "541:4:0",
+                "src": "583:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "532:22:0",
+              "src": "574:22:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 39,
+                "id": 86,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "549:4:0",
+                "src": "591:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -539,24 +591,24 @@
             "visibility": "internal"
           }
         ],
-        "scope": 43,
-        "src": "26:553:0"
+        "scope": 90,
+        "src": "26:595:1"
       }
     ],
-    "src": "0:580:0"
+    "src": "0:622:1"
   },
   "legacyAST": {
     "absolutePath": "/home/shamsfk/projects/artpatron/ethereum/contracts/ArtPatronData.sol",
     "exportedSymbols": {
       "ArtPatronData": [
-        42
+        89
       ]
     },
-    "id": 43,
+    "id": 90,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1,
+        "id": 44,
         "literals": [
           "solidity",
           "^",
@@ -564,7 +616,7 @@
           ".18"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:0"
+        "src": "0:24:1"
       },
       {
         "baseContracts": [],
@@ -572,24 +624,24 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 42,
+        "id": 89,
         "linearizedBaseContracts": [
-          42
+          89
         ],
         "name": "ArtPatronData",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "ArtPatronData.Item",
-            "id": 14,
+            "id": 61,
             "members": [
               {
                 "constant": false,
-                "id": 3,
-                "name": "name",
+                "id": 46,
+                "name": "title",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "77:11:0",
+                "scope": 61,
+                "src": "77:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -597,10 +649,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 2,
+                  "id": 45,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "77:6:0",
+                  "src": "77:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -611,11 +663,63 @@
               },
               {
                 "constant": false,
-                "id": 5,
+                "id": 48,
+                "name": "authorId",
+                "nodeType": "VariableDeclaration",
+                "scope": 61,
+                "src": "99:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 47,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "99:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50,
+                "name": "holderId",
+                "nodeType": "VariableDeclaration",
+                "scope": 61,
+                "src": "122:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 49,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "122:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 52,
                 "name": "creationDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "98:17:0",
+                "scope": 61,
+                "src": "145:17:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -623,10 +727,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 4,
+                  "id": 51,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "98:4:0",
+                  "src": "145:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -637,11 +741,11 @@
               },
               {
                 "constant": false,
-                "id": 7,
+                "id": 54,
                 "name": "currentBid",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "125:15:0",
+                "scope": 61,
+                "src": "172:15:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -649,10 +753,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 6,
+                  "id": 53,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "125:4:0",
+                  "src": "172:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -663,11 +767,11 @@
               },
               {
                 "constant": false,
-                "id": 9,
+                "id": 56,
                 "name": "patronshipDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "150:19:0",
+                "scope": 61,
+                "src": "197:19:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -675,10 +779,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 8,
+                  "id": 55,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "150:4:0",
+                  "src": "197:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -689,11 +793,11 @@
               },
               {
                 "constant": false,
-                "id": 11,
-                "name": "patronshipDuration",
+                "id": 58,
+                "name": "tabletDueDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "179:23:0",
+                "scope": 61,
+                "src": "226:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -701,10 +805,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 10,
+                  "id": 57,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "179:4:0",
+                  "src": "226:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -715,11 +819,11 @@
               },
               {
                 "constant": false,
-                "id": 13,
+                "id": 60,
                 "name": "patronAddress",
                 "nodeType": "VariableDeclaration",
-                "scope": 14,
-                "src": "212:21:0",
+                "scope": 61,
+                "src": "254:21:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -727,10 +831,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 12,
+                  "id": 59,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "212:7:0",
+                  "src": "254:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -742,21 +846,21 @@
             ],
             "name": "Item",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "55:185:0",
+            "scope": 89,
+            "src": "55:227:1",
             "visibility": "public"
           },
           {
             "canonicalName": "ArtPatronData.Author",
-            "id": 19,
+            "id": 66,
             "members": [
               {
                 "constant": false,
-                "id": 16,
+                "id": 63,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 19,
-                "src": "270:11:0",
+                "scope": 66,
+                "src": "312:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -764,10 +868,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 15,
+                  "id": 62,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "270:6:0",
+                  "src": "312:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -778,11 +882,11 @@
               },
               {
                 "constant": false,
-                "id": 18,
+                "id": 65,
                 "name": "birthDate",
                 "nodeType": "VariableDeclaration",
-                "scope": 19,
-                "src": "291:14:0",
+                "scope": 66,
+                "src": "333:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -790,10 +894,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 17,
+                  "id": 64,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "291:4:0",
+                  "src": "333:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -805,21 +909,21 @@
             ],
             "name": "Author",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "246:66:0",
+            "scope": 89,
+            "src": "288:66:1",
             "visibility": "public"
           },
           {
             "canonicalName": "ArtPatronData.Holder",
-            "id": 24,
+            "id": 71,
             "members": [
               {
                 "constant": false,
-                "id": 21,
+                "id": 68,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 24,
-                "src": "342:11:0",
+                "scope": 71,
+                "src": "384:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -827,10 +931,10 @@
                   "typeString": "string storage pointer"
                 },
                 "typeName": {
-                  "id": 20,
+                  "id": 67,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "342:6:0",
+                  "src": "384:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string storage pointer"
@@ -841,11 +945,11 @@
               },
               {
                 "constant": false,
-                "id": 23,
+                "id": 70,
                 "name": "countryId",
                 "nodeType": "VariableDeclaration",
-                "scope": 24,
-                "src": "363:16:0",
+                "scope": 71,
+                "src": "405:16:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -853,10 +957,10 @@
                   "typeString": "uint16"
                 },
                 "typeName": {
-                  "id": 22,
+                  "id": 69,
                   "name": "uint16",
                   "nodeType": "ElementaryTypeName",
-                  "src": "363:6:0",
+                  "src": "405:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint16",
                     "typeString": "uint16"
@@ -868,42 +972,42 @@
             ],
             "name": "Holder",
             "nodeType": "StructDefinition",
-            "scope": 42,
-            "src": "318:68:0",
+            "scope": 89,
+            "src": "360:68:1",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 27,
+            "id": 74,
             "name": "items",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "392:21:0",
+            "scope": 89,
+            "src": "434:21:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Item_$14_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Item_$61_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Item storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 25,
+                "id": 72,
                 "name": "Item",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 14,
-                "src": "392:4:0",
+                "referencedDeclaration": 61,
+                "src": "434:4:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Item_$14_storage_ptr",
+                  "typeIdentifier": "t_struct$_Item_$61_storage_ptr",
                   "typeString": "struct ArtPatronData.Item storage pointer"
                 }
               },
-              "id": 26,
+              "id": 73,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "392:6:0",
+              "src": "434:6:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Item_$14_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Item_$61_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Item storage ref[] storage pointer"
               }
             },
@@ -912,36 +1016,36 @@
           },
           {
             "constant": false,
-            "id": 30,
+            "id": 77,
             "name": "authors",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "419:25:0",
+            "scope": 89,
+            "src": "461:25:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Author_$19_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Author_$66_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Author storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 28,
+                "id": 75,
                 "name": "Author",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 19,
-                "src": "419:6:0",
+                "referencedDeclaration": 66,
+                "src": "461:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Author_$19_storage_ptr",
+                  "typeIdentifier": "t_struct$_Author_$66_storage_ptr",
                   "typeString": "struct ArtPatronData.Author storage pointer"
                 }
               },
-              "id": 29,
+              "id": 76,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "419:8:0",
+              "src": "461:8:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Author_$19_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Author_$66_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Author storage ref[] storage pointer"
               }
             },
@@ -950,36 +1054,36 @@
           },
           {
             "constant": false,
-            "id": 33,
+            "id": 80,
             "name": "holders",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "450:25:0",
+            "scope": 89,
+            "src": "492:25:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_Holder_$24_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_Holder_$71_storage_$dyn_storage",
               "typeString": "struct ArtPatronData.Holder storage ref[] storage ref"
             },
             "typeName": {
               "baseType": {
                 "contractScope": null,
-                "id": 31,
+                "id": 78,
                 "name": "Holder",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 24,
-                "src": "450:6:0",
+                "referencedDeclaration": 71,
+                "src": "492:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Holder_$24_storage_ptr",
+                  "typeIdentifier": "t_struct$_Holder_$71_storage_ptr",
                   "typeString": "struct ArtPatronData.Holder storage pointer"
                 }
               },
-              "id": 32,
+              "id": 79,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "450:8:0",
+              "src": "492:8:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_Holder_$24_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_Holder_$71_storage_$dyn_storage_ptr",
                 "typeString": "struct ArtPatronData.Holder storage ref[] storage pointer"
               }
             },
@@ -988,11 +1092,11 @@
           },
           {
             "constant": false,
-            "id": 37,
+            "id": 84,
             "name": "itemToAuthor",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "482:44:0",
+            "scope": 89,
+            "src": "524:44:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1000,28 +1104,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 36,
+              "id": 83,
               "keyType": {
-                "id": 34,
+                "id": 81,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "491:4:0",
+                "src": "533:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "482:22:0",
+              "src": "524:22:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 35,
+                "id": 82,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "499:4:0",
+                "src": "541:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -1033,11 +1137,11 @@
           },
           {
             "constant": false,
-            "id": 41,
+            "id": 88,
             "name": "itemToHolder",
             "nodeType": "VariableDeclaration",
-            "scope": 42,
-            "src": "532:44:0",
+            "scope": 89,
+            "src": "574:44:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1045,28 +1149,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 40,
+              "id": 87,
               "keyType": {
-                "id": 38,
+                "id": 85,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "541:4:0",
+                "src": "583:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "532:22:0",
+              "src": "574:22:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 39,
+                "id": 86,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "549:4:0",
+                "src": "591:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -1077,11 +1181,11 @@
             "visibility": "internal"
           }
         ],
-        "scope": 43,
-        "src": "26:553:0"
+        "scope": 90,
+        "src": "26:595:1"
       }
     ],
-    "src": "0:580:0"
+    "src": "0:622:1"
   },
   "compiler": {
     "name": "solc",
@@ -1089,5 +1193,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-17T02:25:59.742Z"
+  "updatedAt": "2018-04-17T17:47:59.765Z"
 }

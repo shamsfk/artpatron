@@ -17,34 +17,31 @@ contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
 
         items.push(Item(
             _name,
+            _authorId,
+            _holderId,
             _creationDate,
             1 ether,
             0,
             0,
             0
         ));
-
-        uint id = items.length - 1;
-
-        itemToAuthor[id] = _authorId;
-        itemToHolder[id] = _holderId;
     }
 
-    function AddAuthor(
-        string _name,
-        uint _birthDate
-    )
+    function AddAuthor(string _name, uint _birthDate)
         external onlyManager
     {
         authors.push(Author(_name, _birthDate));
     }
 
-    function AddHolder(
-        string _name,
-        uint16 _countryId
-    )
+    function AddHolder(string _name, uint16 _countryId)
         external onlyManager
     {
         holders.push(Holder(_name, _countryId));
+    }
+
+    function ChangeItemHolder(uint _itemId, uint _newHolderId)
+        external onlyManager
+    {
+        items[_itemId].holderId = _newHolderId;
     }
 }
