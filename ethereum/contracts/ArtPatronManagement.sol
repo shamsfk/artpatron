@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
 import "./ArtPatronDataAccess.sol";
-import "./Ownable.sol";
+import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
     function AddItem(
@@ -10,7 +10,7 @@ contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
         uint _authorId,
         uint _holderId
     )
-        external onlyManager
+        external onlyOwner
     {
         require(authors.length > _authorId);
         require(holders.length > _holderId);
@@ -28,19 +28,19 @@ contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
     }
 
     function AddAuthor(string _name, uint _birthDate)
-        external onlyManager
+        external onlyOwner
     {
         authors.push(Author(_name, _birthDate));
     }
 
     function AddHolder(string _name, uint16 _countryId)
-        external onlyManager
+        external onlyOwner
     {
         holders.push(Holder(_name, _countryId));
     }
 
     function ChangeItemHolder(uint _itemId, uint _newHolderId)
-        external onlyManager
+        external onlyOwner
     {
         items[_itemId].holderId = _newHolderId;
     }
