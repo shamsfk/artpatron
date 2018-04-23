@@ -1,4 +1,4 @@
-import contract from '../ethereum/build/contracts/ArtPatronManagement.json'
+import contract from '../ethereum/build/contracts/ArtPatron.json'
 import web3 from './web3'
 
 export default address => {
