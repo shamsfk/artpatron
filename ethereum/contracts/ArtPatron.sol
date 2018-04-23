@@ -3,7 +3,7 @@ pragma solidity ^0.4.18;
 import "./ArtPatronManagement.sol";
 
 contract ArtPatron is ArtPatronManagement {
-    function ArtPatron() public {
+    function constructor() public {
 
         // TODO: remove this code as it is intended for test only
         authors.push(Author("Monet", 0));

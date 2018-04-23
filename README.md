@@ -1,5 +1,5 @@
-# artpatron
+# Art Patron Foundation
 
-Art Patron project
+Art Patron Foundation project
 
 
