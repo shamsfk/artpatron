@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
-import "./ArtPatronDataAccess.sol";
+import "./ArtPatronData.sol";
 import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
+contract ArtPatronManagement is ArtPatronData, Ownable {
     function AddItem(
         string _name,
         uint _creationDate,
@@ -21,7 +21,6 @@ contract ArtPatronManagement is ArtPatronDataAccess, Ownable {
             _holderId,
             _creationDate,
             1 ether,
-            0,
             0,
             0
         ));

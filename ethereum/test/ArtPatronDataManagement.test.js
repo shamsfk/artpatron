@@ -1,8 +1,9 @@
-/* global artifacts contract it assert before */
+/* global artifacts contract it assert before web3 */
 
+var utils = require('../../src/utils')
 var ArtPatron = artifacts.require('./ArtPatron.sol')
 
-contract('ArtPatronDataManagement', (accounts) => {
+contract('ArtPatronData & Management', (accounts) => {
   let instance
 
   before(async () => {
@@ -17,46 +18,40 @@ contract('ArtPatronDataManagement', (accounts) => {
   })
 
   it('should add Authors and Holders', async () => {
-    let length = await instance.GetAuthorsLength.call()
+    let length = await instance.GetAuthorsLength()
     assert.equal(length, 2)
 
-    length = await instance.GetHoldersLength.call()
+    length = await instance.GetHoldersLength()
     assert.equal(length, 3)
   })
 
   it('should read Author', async () => {
-    let name = await instance.GetAuthorName(0)
+    let [name, birthDate] = await instance.GetAuthorData(0)
     assert.equal(name, 'Monet1')
-
-    let birthDate = await instance.GetAuthorBirthDate(0)
     assert.equal(birthDate, 71)
   })
 
   it('should read Holder', async () => {
-    let name = await instance.GetHolderName.call(0)
+    let [name, countryId] = await instance.GetHolderData(0)
     assert.equal(name, 'Museum1')
-
-    let countryId = await instance.GetHolderCountryId.call(0)
     assert.equal(countryId, 71)
   })
 
   it('should add and read Item', async () => {
     await instance.AddItem('Item 1', 888, 1, 2)
 
-    let length = await instance.GetItemsLength.call()
+    let length = await instance.GetItemsLength()
     assert.equal(length, 1)
 
-    let title = await instance.GetItemTitle.call(0)
-    assert.equal(title, 'Item 1')
+    let item = utils.getItemObject(await instance.GetItemData(0))
 
-    let creationDate = await instance.GetItemCreationDate.call(0)
-    assert.equal(creationDate, 888)
-
-    let authorId = await instance.GetItemAuthorId.call(0)
-    assert.equal(authorId, 1)
-
-    let holderId = await instance.GetItemHolderId.call(0)
-    assert.equal(holderId, 2)
+    assert.equal(item.title, 'Item 1')
+    assert.equal(item.creationDate, 888)
+    assert.equal(item.authorId, 1)
+    assert.equal(item.holderId, 2)
+    assert.equal(item.currentBid, web3.toWei(1, 'ether'))
+    assert.equal(item.tabletDueDate, 0)
+    assert.equal(item.patronAddress, 0)
   })
 
   it('should not add Item with invalid authorId', async () => {
@@ -83,12 +78,12 @@ contract('ArtPatronDataManagement', (accounts) => {
 
   it('should allow owner to change holderId', async () => {
     await instance.AddItem('Item 2', 888, 0, 0)
-    let holderId = await instance.GetItemHolderId.call(1)
-    assert.equal(holderId, 0)
+    let item = utils.getItemObject(await instance.GetItemData(1))
+    assert.equal(item.holderId, 0)
 
     await instance.ChangeItemHolder(1, 2)
-    holderId = await instance.GetItemHolderId.call(1)
-    assert.equal(holderId, 2)
+    item = utils.getItemObject(await instance.GetItemData(1))
+    assert.equal(item.holderId, 2)
   })
 
   it('should not allow not an owner to change holderId', async () => {
