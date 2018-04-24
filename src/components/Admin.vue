@@ -10,24 +10,56 @@
 
     <div class="admin-block">
       <h3>Add Author</h3>
-      <input type="text" v-model="authorName">
-      <input type="date" v-model="authorBirthDate">
+      <div class="admin-block-input">
+        <label for="authorName">Author's name &nbsp;</label>
+        <input type="text" name="authorName" v-model="authorName" placeholder="Monet">
+      </div>
+
+      <div class="admin-block-input">
+        <label for="authorBirthDate">Author's birth date &nbsp;</label>
+        <input type="date" name="authorBirthDate" v-model="authorBirthDate">
+      </div>
+
       <button :disabled="authorDisabled">Add Author</button>
     </div>
 
     <div class="admin-block">
       <h3>Add Holder</h3>
-      <input type="text" v-model="holderName">
-      <input type="number" v-model="holderCountryId">
+      <div class="admin-block-input">
+        <label for="holderName">Holder's name &nbsp;</label>
+        <input type="text" name="holderName" v-model="holderName" placeholder="Tretyakivskay gallery">
+      </div>
+
+      <div class="admin-block-input">
+        <label for="holderCountryId">Holder's country id &nbsp;</label>
+        <input type="number" name="holderCountryId" v-model="holderCountryId" placeholder="7">
+      </div>
+
       <button :disabled="holderDisabled">Add Holder</button>
     </div>
 
     <div class="admin-block">
       <h3>Add Item</h3>
-      <input type="text" v-model="itemName">
-      <input type="number" v-model="itemAuthorId">
-      <input type="number" v-model="itemHolderId">
-      <input type="date" v-model="itemCreationDate">
+      <div class="admin-block-input">
+        <label for="itemName">Item's name &nbsp;</label>
+        <input type="text" name="itemName" v-model="itemName" placeholder="Some item">
+      </div>
+
+      <div class="admin-block-input">
+        <label for="itemAuthorId">Item's author id &nbsp;</label>
+        <input type="number" name="itemAuthorId" v-model="itemAuthorId" placeholder="3">
+      </div>
+
+      <div class="admin-block-input">
+        <label for="itemHolderId">Item's holder id &nbsp;</label>
+        <input type="number" name="itemHoderId" v-model="itemHolderId" placeholder="5">
+      </div>
+
+      <div class="admin-block-input">
+        <label for="itemCreationDate">Item's creation date &nbsp;</label>
+        <input type="date" name="itemCreationDate" v-model="itemCreationDate">
+      </div>
+
       <button :disabled="itemDisabled">Add Item</button>
     </div>
   </div>
@@ -83,6 +115,14 @@ export default {
 }
 
 .admin-block {
-  margin-bottom: 4em;
+  margin: 0 auto 3em auto;
+  width: 50%;
+  min-width: 480px;
+  text-align: left;
 }
+
+.admin-block-input {
+  margin-block-end: .5rem;
+}
+
 </style>
