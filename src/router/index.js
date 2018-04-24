@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Admin from '@/components/Admin.vue'
 import Gallery from '@/components/Gallery.vue'
 import Item from '@/components/Item.vue'
 import Authors from '@/components/Authors.vue'
@@ -12,6 +13,11 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
+    },
     {
       path: '/gallery',
       name: 'Gallery',

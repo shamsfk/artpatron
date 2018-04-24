@@ -3,6 +3,7 @@ module.exports = {
   getItemObject: function (tuple) {
     let [
       name,
+      id,
       authorId,
       holderId,
       creationDate,
@@ -13,6 +14,7 @@ module.exports = {
 
     return {
       name,
+      id,
       authorId,
       holderId,
       creationDate,
@@ -25,11 +27,13 @@ module.exports = {
   getAuhtorObject: function (tuple) {
     let [
       name,
+      id,
       birthDate
     ] = tuple
 
     return {
       name,
+      id,
       birthDate
     }
   },
@@ -37,11 +41,13 @@ module.exports = {
   getHolderObject: function (tuple) {
     let [
       name,
+      id,
       countryId
     ] = tuple
 
     return {
       name,
+      id,
       countryId
     }
   }

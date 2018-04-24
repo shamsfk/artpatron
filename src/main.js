@@ -15,16 +15,14 @@ window.addEventListener('load', function () {
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider.
     web3 = new Web3(web3.currentProvider)
-
     console.log('Injected web3 detected.')
   } else {
     // Fallback to localhost if no web3 injection. We've configured this to
     // use the development console's port by default.
-    var provider = new Web3.providers.HttpProvider('http://127.0.0.1:9545')
-
-    web3 = new Web3(provider)
-
-    console.log('No web3 instance injected, using Local web3.')
+    // var provider = new Web3.providers.HttpProvider('http://127.0.0.1:9545')
+    // web3 = new Web3(provider)
+    console.log('No web3 instance injected')
+    web3 = null
   }
 
   /* eslint-disable no-new */
@@ -38,13 +36,13 @@ window.addEventListener('load', function () {
 
       const artPatron = truffleContract(ArtPatronContract)
       artPatron.setProvider(web3.currentProvider)
-      let instance = await artPatron.deployed()
+      let coinbase = await web3.eth.getCoinbase()
+      artPatron.defaults({from: coinbase})
 
-      console.log(instance)
-      console.log(await instance.GetAuthorsLength())
+      // let instance = await artPatron.deployed()
 
       // await instance.AddAuthor('Monet', 5)
-      // await instance.AddHolder('Museum', new BigNumber(7))
+      // await instance.AddHolder('Museum', 7)
     }
   })
 })

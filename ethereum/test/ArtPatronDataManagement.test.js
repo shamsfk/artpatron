@@ -47,15 +47,17 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.ok(error)
   })
 
-  it('should correctly read Author', async () => {
-    let [name, birthDate] = await instance.GetAuthorData(0)
+  it('should correctly read Authors', async () => {
+    let [name, id, birthDate] = await instance.GetAuthorData(0)
     assert.equal(name, 'Monet1')
+    assert.equal(id, 0)
     assert.equal(birthDate, 71)
   })
 
   it('should correctly read Holder', async () => {
-    let [name, countryId] = await instance.GetHolderData(0)
+    let [name, id, countryId] = await instance.GetHolderData(0)
     assert.equal(name, 'Museum1')
+    assert.equal(id, 0)
     assert.equal(countryId, 71)
   })
 
@@ -68,6 +70,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     let item = utils.getItemObject(await instance.GetItemData(0))
 
     assert.equal(item.name, 'Item 1')
+    assert.equal(item.id, 0)
     assert.equal(item.creationDate, 888)
     assert.equal(item.authorId, 1)
     assert.equal(item.holderId, 2)

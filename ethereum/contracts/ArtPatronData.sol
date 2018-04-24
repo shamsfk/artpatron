@@ -8,6 +8,7 @@ pragma solidity ^0.4.18;
 contract ArtPatronData {
     struct Item {
         string name;
+        uint id;
         uint authorId;
         uint holderId;
         uint creationDate;
@@ -18,11 +19,13 @@ contract ArtPatronData {
 
     struct Author {
         string name;
+        uint id;
         uint birthDate;
     }
 
     struct Holder {
         string name;
+        uint id;
         uint16 countryId;
     }
 
@@ -48,6 +51,7 @@ contract ArtPatronData {
     function GetItemData(uint _itemId) external view
         returns (
             string name,
+            uint id,
             uint authorId,
             uint holderId,
             uint creationDate,
@@ -60,6 +64,7 @@ contract ArtPatronData {
         Item storage item = items[_itemId];
 
         name = item.name;
+        id = item.id;
         authorId = item.authorId;
         holderId = item.holderId;
         creationDate = item.creationDate;
@@ -71,6 +76,7 @@ contract ArtPatronData {
     function GetAuthorData(uint _authorId) external view
         returns (
             string name,
+            uint id,
             uint birthDate
         )
     {
@@ -78,12 +84,14 @@ contract ArtPatronData {
         Author storage author = authors[_authorId];
 
         name = author.name;
+        id = author.id;
         birthDate = author.birthDate;
     }
 
     function GetHolderData(uint _holderId) external view
         returns (
             string name,
+            uint id,
             uint countryId
         )
     {
@@ -91,6 +99,7 @@ contract ArtPatronData {
         Holder storage holder = holders[_holderId];
 
         name = holder.name;
+        id = holder.id;
         countryId = holder.countryId;
     }
 }
