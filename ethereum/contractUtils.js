@@ -2,7 +2,7 @@
 module.exports = {
   getItemObject: function (tuple) {
     let [
-      title,
+      name,
       authorId,
       holderId,
       creationDate,
@@ -12,13 +12,37 @@ module.exports = {
     ] = tuple
 
     return {
-      title,
+      name,
       authorId,
       holderId,
       creationDate,
       currentBid,
       tabletDueDate,
       patronAddress
+    }
+  },
+
+  getAuhtorObject: function (tuple) {
+    let [
+      name,
+      birthDate
+    ] = tuple
+
+    return {
+      name,
+      birthDate
+    }
+  },
+
+  getHolderObject: function (tuple) {
+    let [
+      name,
+      countryId
+    ] = tuple
+
+    return {
+      name,
+      countryId
     }
   }
 }

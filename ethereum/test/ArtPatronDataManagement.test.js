@@ -1,9 +1,9 @@
 /* global artifacts contract it assert before web3 */
 
-var utils = require('../../src/utils')
+var utils = require('../contractUtils')
 var ArtPatron = artifacts.require('./ArtPatron.sol')
 
-contract('ArtPatronData & Management', (accounts) => {
+contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   let instance
 
   before(async () => {
@@ -25,19 +25,41 @@ contract('ArtPatronData & Management', (accounts) => {
     assert.equal(length, 3)
   })
 
-  it('should read Author', async () => {
+  it('should not add Author with empty name', async () => {
+    let error
+    try {
+      await instance.AddAuthor('', 71)
+    } catch (err) {
+      error = err
+    }
+
+    assert.ok(error)
+  })
+
+  it('should not add Holder with empty name', async () => {
+    let error
+    try {
+      await instance.AddHolder('', 71)
+    } catch (err) {
+      error = err
+    }
+
+    assert.ok(error)
+  })
+
+  it('should correctly read Author', async () => {
     let [name, birthDate] = await instance.GetAuthorData(0)
     assert.equal(name, 'Monet1')
     assert.equal(birthDate, 71)
   })
 
-  it('should read Holder', async () => {
+  it('should correctly read Holder', async () => {
     let [name, countryId] = await instance.GetHolderData(0)
     assert.equal(name, 'Museum1')
     assert.equal(countryId, 71)
   })
 
-  it('should add and read Item', async () => {
+  it('should add and correctly read Item', async () => {
     await instance.AddItem('Item 1', 888, 1, 2)
 
     let length = await instance.GetItemsLength()
@@ -45,13 +67,24 @@ contract('ArtPatronData & Management', (accounts) => {
 
     let item = utils.getItemObject(await instance.GetItemData(0))
 
-    assert.equal(item.title, 'Item 1')
+    assert.equal(item.name, 'Item 1')
     assert.equal(item.creationDate, 888)
     assert.equal(item.authorId, 1)
     assert.equal(item.holderId, 2)
     assert.equal(item.currentBid, web3.toWei(1, 'ether'))
     assert.equal(item.tabletDueDate, 0)
     assert.equal(item.patronAddress, 0)
+  })
+
+  it('should not add Item with empty name', async () => {
+    let error
+    try {
+      await instance.AddItem('', 888, 0, 0)
+    } catch (err) {
+      error = err
+    }
+
+    assert.ok(error)
   })
 
   it('should not add Item with invalid authorId', async () => {

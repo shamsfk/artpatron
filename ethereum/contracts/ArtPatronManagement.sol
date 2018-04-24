@@ -15,6 +15,8 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         require(authors.length > _authorId);
         require(holders.length > _holderId);
 
+        require(bytes(_name).length > 0);
+
         items.push(Item(
             _name,
             _authorId,
@@ -29,12 +31,14 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
     function AddAuthor(string _name, uint _birthDate)
         external onlyOwner
     {
+        require(bytes(_name).length > 0);
         authors.push(Author(_name, _birthDate));
     }
 
     function AddHolder(string _name, uint16 _countryId)
         external onlyOwner
     {
+        require(bytes(_name).length > 0);
         holders.push(Holder(_name, _countryId));
     }
 

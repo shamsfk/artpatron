@@ -1,8 +1,13 @@
 pragma solidity ^0.4.18;
 
+/// @title Art Patron Data constract
+/// Holds data of all Items, Authors and Holders
+/// @dev Data is stored in arrays
+/// @dev There is no write access in this contract
+/// @dev Read access
 contract ArtPatronData {
     struct Item {
-        string title;
+        string name;
         uint authorId;
         uint holderId;
         uint creationDate;
@@ -40,19 +45,21 @@ contract ArtPatronData {
         return holders.length;
     }
 
-    function GetItemData(uint _itemId) external view returns(
-        string title,
-        uint authorId,
-        uint holderId,
-        uint creationDate,
-        uint currentBid,
-        uint tabletDueDate,
-        address patronAddress
-    ) {
+    function GetItemData(uint _itemId) external view
+        returns (
+            string name,
+            uint authorId,
+            uint holderId,
+            uint creationDate,
+            uint currentBid,
+            uint tabletDueDate,
+            address patronAddress
+        )
+    {
         require(items.length > _itemId);
         Item storage item = items[_itemId];
 
-        title = item.title;
+        name = item.name;
         authorId = item.authorId;
         holderId = item.holderId;
         creationDate = item.creationDate;
@@ -61,10 +68,12 @@ contract ArtPatronData {
         patronAddress = item.patronAddress;
     }
 
-    function GetAuthorData(uint _authorId) external view returns(
-        string name,
-        uint birthDate
-    ) {
+    function GetAuthorData(uint _authorId) external view
+        returns (
+            string name,
+            uint birthDate
+        )
+    {
         require(authors.length > _authorId);
         Author storage author = authors[_authorId];
 
@@ -72,10 +81,12 @@ contract ArtPatronData {
         birthDate = author.birthDate;
     }
 
-    function GetHolderData(uint _holderId) external view returns(
-        string name,
-        uint countryId
-    ) {
+    function GetHolderData(uint _holderId) external view
+        returns (
+            string name,
+            uint countryId
+        )
+    {
         require(holders.length > _holderId);
         Holder storage holder = holders[_holderId];
 
