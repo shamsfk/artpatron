@@ -3,9 +3,9 @@
     <h1 class="title">Admin Panel</h1>
     <div class="admin-block">
       <h3>Stats</h3>
-      Authors: <strong>0</strong> &nbsp;
-      Holders: <strong>0</strong> &nbsp;
-      Items: <strong>0</strong> &nbsp;
+      Authors: <strong>{{authorsLength}}</strong> &nbsp;
+      Holders: <strong>{{holdersLenght}}</strong> &nbsp;
+      Items: <strong>{{itemsLenght}}</strong> &nbsp;
     </div>
 
     <div class="admin-block">
@@ -20,7 +20,7 @@
         <input type="date" name="authorBirthDate" v-model="authorBirthDate">
       </div>
 
-      <button :disabled="authorDisabled">Add Author</button>
+      <button :disabled="authorDisabled" @click="addAuthor">Add Author</button>
     </div>
 
     <div class="admin-block">
@@ -35,7 +35,7 @@
         <input type="number" name="holderCountryId" v-model="holderCountryId" placeholder="7">
       </div>
 
-      <button :disabled="holderDisabled">Add Holder</button>
+      <button :disabled="holderDisabled" @click="addAuthor">Add Holder</button>
     </div>
 
     <div class="admin-block">
@@ -66,6 +66,9 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import getContract from '../getContract'
+
 export default {
   name: 'Admin',
   data: function () {
@@ -77,10 +80,45 @@ export default {
       itemName: '',
       itemAuthorId: '',
       itemHolderId: '',
-      itemCreationDate: ''
+      itemCreationDate: '',
+      contract: 0,
+      itemsLenght: 0,
+      authorsLength: 0,
+      holdersLenght: 0
+    }
+  },
+  methods: {
+    addAuthor: async function () {
+      try {
+        await this.contract.AddAuthor(this.authorName, Date.parse(this.authorBirthDate))
+      } catch (err) {
+        console.log('Adding Author failed with error:\n', err)
+      }
+    },
+    addHolder: async function () {
+      try {
+        await this.contract.AddHolder(this.holderName, this.holderCountryId)
+      } catch (err) {
+        console.log('Adding Holder failed with error:\n', err)
+      }
+    },
+    addItem: async function () {
+      try {
+        await this.contract.AddItem(
+          this.itemName,
+          Date.parse(this.itemCreationDate),
+          this.itemAuthorId,
+          this.itemHolderId
+        )
+      } catch (err) {
+        console.log('Adding Item failed with error:\n', err)
+      }
     }
   },
   computed: {
+    ...mapGetters([
+      'web3'
+    ]),
     authorDisabled: function () {
       if (this.authorName === '' || this.authorBirthDate === '') {
         return true
@@ -104,6 +142,10 @@ export default {
       }
       return false
     }
+  },
+  created: async function () {
+    let contract = await getContract()
+    this.contract = contract
   }
 }
 </script>

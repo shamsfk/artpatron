@@ -22,12 +22,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      // 'contract',
       'items'
     ])
-  },
-  mounted: () => {
-    console.log(this.contract)
   }
 }
 </script>
