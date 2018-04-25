@@ -35,7 +35,7 @@
         <input type="number" name="holderCountryId" v-model="holderCountryId" placeholder="7">
       </div>
 
-      <button :disabled="holderDisabled" @click="addAuthor">Add Holder</button>
+      <button :disabled="holderDisabled" @click="addHolder">Add Holder</button>
     </div>
 
     <div class="admin-block">
@@ -60,7 +60,7 @@
         <input type="date" name="itemCreationDate" v-model="itemCreationDate">
       </div>
 
-      <button :disabled="itemDisabled">Add Item</button>
+      <button :disabled="itemDisabled" @click="addItem">Add Item</button>
     </div>
   </div>
 </template>

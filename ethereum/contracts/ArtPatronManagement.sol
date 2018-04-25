@@ -5,7 +5,7 @@ import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ArtPatronManagement is ArtPatronData, Ownable {
     event ItemAdded(uint itemId);
-    event AuthorAdded(uint authroId);
+    event AuthorAdded(uint authorId);
     event HolderAdded(uint holderId);
     event ItemHolderChanged(uint itemId);
 
