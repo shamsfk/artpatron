@@ -1,13 +1,46 @@
-/* global artifacts contract it assert before web3 */
+/* global artifacts contract it assert before after web3 */
 
 var utils = require('../contractUtils')
 var ArtPatron = artifacts.require('./ArtPatron.sol')
 
 contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   let instance
+  let addAuthorEvent
+  let addAuthorEventResults = []
+  let addHolderEvent
+  let addHolderEventResults = []
+  let addItemEvent
+  let addItemEventResults = []
 
   before(async () => {
     instance = await ArtPatron.deployed()
+
+    addAuthorEvent = instance.AuthorAdded()
+    addAuthorEvent.watch(function (err, result) {
+      if (err) {
+        console.log(err)
+      } else {
+        addAuthorEventResults.push(result)
+      }
+    })
+
+    addHolderEvent = instance.HolderAdded()
+    addHolderEvent.watch(function (err, result) {
+      if (err) {
+        console.log(err)
+      } else {
+        addHolderEventResults.push(result)
+      }
+    })
+
+    addItemEvent = instance.HolderAdded()
+    addItemEvent.watch(function (err, result) {
+      if (err) {
+        console.log(err)
+      } else {
+        addItemEventResults.push(result)
+      }
+    })
 
     await instance.AddAuthor('Monet1', 71)
     await instance.AddAuthor('Monet2', 72)
@@ -17,12 +50,23 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     await instance.AddHolder('Museum3', 73)
   })
 
+  after(() => {
+    addAuthorEvent.stopWatching()
+    addHolderEvent.stopWatching()
+    addItemEvent.stopWatching()
+  })
+
   it('should add Authors and Holders', async () => {
     let length = await instance.GetAuthorsLength()
     assert.equal(length, 2)
 
     length = await instance.GetHoldersLength()
     assert.equal(length, 3)
+  })
+
+  it('should emit AddAuthor and AddHolder events', () => {
+    assert(addAuthorEventResults.length, 2)
+    assert(addHolderEventResults.length, 3)
   })
 
   it('should not add Author with empty name', async () => {
@@ -77,6 +121,10 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(item.currentBid, web3.toWei(1, 'ether'))
     assert.equal(item.tabletDueDate, 0)
     assert.equal(item.patronAddress, 0)
+  })
+
+  it('should emit AddItem event', () => {
+    assert(addItemEventResults.length, 1)
   })
 
   it('should not add Item with empty name', async () => {
