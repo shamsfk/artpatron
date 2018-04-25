@@ -34,7 +34,7 @@ async function initAuthorsData (contract) {
     authors.push(authorObject)
   }
 
-  console.log('AUTHORS:\n', authors)
+  store.commit('setAuthors', authors)
 }
 
 async function initHoldersData (contract) {
@@ -42,12 +42,12 @@ async function initHoldersData (contract) {
   let holderssLength = await contract.GetHoldersLength()
 
   for (let i = 0; i < holderssLength; i++) {
-    let authorData = await contract.GetHolderData(i)
-    let authorObject = contractUtils.getHolderObject(authorData)
-    holders.push(authorObject)
+    let holderData = await contract.GetHolderData(i)
+    let holderObject = contractUtils.getHolderObject(holderData)
+    holders.push(holderObject)
   }
 
-  console.log('HOLDERS:\n', holders)
+  store.commit('setHolders', holders)
 }
 
 async function initItemsData (contract) {
@@ -60,7 +60,7 @@ async function initItemsData (contract) {
     items.push(itemObject)
   }
 
-  console.log('ITEMS:\n', items)
+  store.commit('setItems', items)
 }
 
 async function initEvents (contract) {
@@ -69,31 +69,51 @@ async function initEvents (contract) {
     if (err) {
       console.log(err)
     } else {
-      let id = result.args.authorId.toString()
-
-      // Check if id is not in the list
+      let id = result.args.authorId.toNumber()
 
       let obj = await contract.GetAuthorData(id)
       let newAuthor = contractUtils.getAuhtorObject(obj)
-      console.log('Author Added:\n', newAuthor)
+
+      // Check if id is not already on the list
+      if (id >= store.state.authors.length) {
+        store.commit('changeAuthor', newAuthor)
+      }
     }
   })
 
   let addHolderEvent = contract.HolderAdded()
-  addHolderEvent.watch(function (err, result) {
+  addHolderEvent.watch(async function (err, result) {
     if (err) {
       console.log(err)
     } else {
-      console.log('Holder Added, id:', result.args.holderId.toString())
+      let id = result.args.holderId.toNumber()
+
+      let obj = await contract.GetHolderData(id)
+      let newHolder = contractUtils.getHolderObject(obj)
+
+      // Check if id is not already on the list
+      if (id >= store.state.holders.length) {
+        store.commit('changeHolder', newHolder)
+      }
     }
   })
 
   let addItemEvent = contract.ItemAdded()
-  addItemEvent.watch(function (err, result) {
+  addItemEvent.watch(async function (err, result) {
     if (err) {
       console.log(err)
     } else {
-      console.log('Item, Added, id:', result.args.itemId.toString())
+      let id = result.args.itemId.toNumber()
+
+      let obj = await contract.GetItemData(id)
+      let newItem = contractUtils.getItemObject(obj)
+
+      // Check if id is not already on the list
+
+      if (id >= store.state.items.length) {
+        store.commit('changeItem', newItem)
+        console.log(store.state.items)
+      }
     }
   })
 }

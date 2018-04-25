@@ -1,3 +1,4 @@
+// var BigNumber = require('bignumber.js')
 
 module.exports = {
   getItemObject: function (tuple) {
@@ -14,12 +15,12 @@ module.exports = {
 
     return {
       name,
-      id,
-      authorId,
-      holderId,
-      creationDate,
-      currentBid,
-      tabletDueDate,
+      id: id.toNumber(),
+      authorId: authorId.toNumber(),
+      holderId: holderId.toNumber(),
+      creationDate: creationDate.toNumber(),
+      currentBid: currentBid.toNumber(),
+      tabletDueDate: tabletDueDate.toNumber(),
       patronAddress
     }
   },
@@ -33,8 +34,8 @@ module.exports = {
 
     return {
       name,
-      id,
-      birthDate
+      id: id.toNumber(),
+      birthDate: birthDate.toNumber()
     }
   },
 
@@ -47,8 +48,8 @@ module.exports = {
 
     return {
       name,
-      id,
-      countryId
+      id: id.toNumber(),
+      countryId: countryId.toNumber()
     }
   }
 }

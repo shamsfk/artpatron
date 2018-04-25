@@ -3,9 +3,9 @@
     <h1 class="title">Admin Panel</h1>
     <div class="admin-block">
       <h3>Stats</h3>
-      Authors: <strong>{{authorsLength}}</strong> &nbsp;
-      Holders: <strong>{{holdersLenght}}</strong> &nbsp;
-      Items: <strong>{{itemsLenght}}</strong> &nbsp;
+      Authors: <strong>{{authors.length}}</strong> &nbsp;
+      Holders: <strong>{{holders.length}}</strong> &nbsp;
+      Items: <strong>{{items.length}}</strong> &nbsp;
     </div>
 
     <div class="admin-block">
@@ -81,10 +81,7 @@ export default {
       itemAuthorId: '',
       itemHolderId: '',
       itemCreationDate: '',
-      contract: 0,
-      itemsLenght: 0,
-      authorsLength: 0,
-      holdersLenght: 0
+      contract: 0
     }
   },
   methods: {
@@ -117,7 +114,10 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'web3'
+      'web3',
+      'items',
+      'authors',
+      'holders'
     ]),
     authorDisabled: function () {
       if (this.authorName === '' || this.authorBirthDate === '') {

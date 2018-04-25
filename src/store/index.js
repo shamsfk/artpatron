@@ -20,12 +20,12 @@ export default new Vuex.Store({
     setWeb3: (state, payload) => { state.web3 = payload },
 
     setItems: (state, payload) => { state.items = payload },
-    changeItem: (state, payload) => { state.items[payload.id] = payload },
+    changeItem: (state, payload) => { Vue.set(state.items, payload.id, payload) },
 
     setAuthors: (state, payload) => { state.authors = payload },
-    changeAuthor: (state, payload) => { state.authors[payload.id] = payload },
+    changeAuthor: (state, payload) => { Vue.set(state.authors, payload.id, payload) },
 
     setHolders: (state, payload) => { state.holders = payload },
-    changeHolder: (state, payload) => { state.holders[payload.id] = payload }
+    changeHolder: (state, payload) => { Vue.set(state.holders, payload.id, payload) }
   }
 })
