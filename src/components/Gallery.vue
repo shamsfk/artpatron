@@ -22,7 +22,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'items'
+      'items',
+      'authors',
+      'holders'
     ])
   }
 }

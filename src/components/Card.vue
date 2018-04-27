@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-image">
       <router-link :to="itemLink">
-        <img :src="item.image" alt="Placeholder image">
+        <img :src="itemImage" alt="Placeholder image">
       </router-link>
     </div>
 
@@ -12,7 +12,7 @@
       </router-link>
       <div class="card-title">
         <router-link class="title" :to="itemLink">
-          {{item.title}}
+          {{item.name}}
         </router-link>
         <router-link class="subtitle" :to="itemLink">
           Monet
@@ -43,6 +43,9 @@ export default {
   computed: {
     itemLink: function () {
       return '/gallery/' + this.item.id
+    },
+    itemImage: function () {
+      return '/static/images/items/' + this.item.id + '.jpg'
     }
   },
   data () {

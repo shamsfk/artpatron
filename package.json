@@ -13,7 +13,8 @@
     "build": "node build/build.js",
     "ethcompile": "(cd ./ethereum/ && truffle compile)",
     "ethtest": "(cd ./ethereum/ && truffle test)",
-    "ethmigrate": "(cd ./ethereum/ && rm -rf ./build && truffle migrate --network development)"
+    "ethmigratedev": "(cd ./ethereum/ && truffle migrate --network development)",
+    "ethmigraterinkeby": "(cd ./ethereum/ && truffle migrate --network rinkeby)"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -81,6 +82,7 @@
     "shelljs": "^0.7.6",
     "sinon": "^4.0.0",
     "sinon-chai": "^2.8.0",
+    "truffle-hdwallet-provider": "0.0.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",

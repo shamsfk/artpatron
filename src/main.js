@@ -112,7 +112,6 @@ async function initEvents (contract) {
 
       if (id >= store.state.items.length) {
         store.commit('changeItem', newItem)
-        console.log(store.state.items)
       }
     }
   })
