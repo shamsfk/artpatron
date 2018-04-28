@@ -30,7 +30,7 @@
     </div>
 
     <footer class="card-footer">
-      <a href="#" class="card-footer-item  is-primary is-medium1">Become a Patron - 15 ETH</a>
+      <a href="#" class="card-footer-item  is-primary is-medium1">Become a Patron</a>
     </footer>
 
   </div>
