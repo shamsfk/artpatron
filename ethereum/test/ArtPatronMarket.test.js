@@ -17,22 +17,22 @@ contract('ArtPatronMarket', (accounts) => {
   })
 
   it('should allow initial purchase of an Item', async () => {
-
+    assert.ok(false)
   })
 
   it('should emit event on a purchase', async () => {
-
+    assert.ok(false)
   })
 
   it('should not allow purchase of an unexistent item', async () => {
-
+    assert.ok(false)
   })
 
   it('should not allow purchase with price lesser than 150% of the current bid', async () => {
-
+    assert.ok(false)
   })
 
   it('should not allow purchase by the current patron of an item', async () => {
-
+    assert.ok(false)
   })
 })
