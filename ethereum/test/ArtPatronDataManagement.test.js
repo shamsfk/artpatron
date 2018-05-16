@@ -10,6 +10,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   let addAuthorResult
   let addHolderResult
   let addItemResult
+  let changeItemHolderResult
 
   before(async () => {
     instance = await ArtPatron.deployed()
@@ -149,9 +150,19 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     let item = utils.getItemObject(await instance.GetItemData(1))
     assert.equal(item.holderId, 0)
 
-    await instance.ChangeItemHolder(1, 2)
+    changeItemHolderResult = await instance.ChangeItemHolder(1, 2)
     item = utils.getItemObject(await instance.GetItemData(1))
     assert.equal(item.holderId, 2)
+  })
+
+  it('should emit event on changing holder', () => {
+    assert.web3Event(
+      changeItemHolderResult,
+      {
+        event: 'ItemHolderChanged'
+      },
+      'The ItemHolderChanged event is emitted'
+    )
   })
 
   it('should not allow not an owner to change holderId', async () => {
