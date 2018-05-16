@@ -1,59 +1,25 @@
-/* global artifacts contract it assert before after web3 */
+/* global artifacts contract it assert before web3 */
+
+require('truffle-test-utils').init()
 
 var utils = require('../contractUtils')
 var ArtPatron = artifacts.require('./ArtPatron.sol')
 
 contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   let instance
-  let addAuthorEvent
-  let addAuthorEventResults = []
-  let addHolderEvent
-  let addHolderEventResults = []
-  let addItemEvent
-  let addItemEventResults = []
+  let addAuthorResult
+  let addHolderResult
+  let addItemResult
 
   before(async () => {
     instance = await ArtPatron.deployed()
 
-    addAuthorEvent = instance.AuthorAdded()
-    addAuthorEvent.watch(function (err, result) {
-      if (err) {
-        console.log('addAuthorEvent error:', err)
-      } else {
-        addAuthorEventResults.push(result)
-      }
-    })
-
-    addHolderEvent = instance.HolderAdded()
-    addHolderEvent.watch(function (err, result) {
-      if (err) {
-        console.log('addHolderEvent error:', err)
-      } else {
-        addHolderEventResults.push(result)
-      }
-    })
-
-    addItemEvent = instance.ItemAdded()
-    addItemEvent.watch(function (err, result) {
-      if (err) {
-        console.log('addItemEvent error:', err)
-      } else {
-        addItemEventResults.push(result)
-      }
-    })
-
-    await instance.AddAuthor('Monet1', 71)
+    addAuthorResult = await instance.AddAuthor('Monet1', 71)
     await instance.AddAuthor('Monet2', 72)
 
-    await instance.AddHolder('Museum1', 71)
+    addHolderResult = await instance.AddHolder('Museum1', 71)
     await instance.AddHolder('Museum2', 72)
     await instance.AddHolder('Museum3', 73)
-  })
-
-  after(() => {
-    addAuthorEvent.stopWatching()
-    addHolderEvent.stopWatching()
-    addItemEvent.stopWatching()
   })
 
   it('should add Authors and Holders', async () => {
@@ -64,10 +30,23 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(length, 3)
   })
 
-  // it('should emit AddAuthor and AddHolder events', () => {
-  //   assert(addAuthorEventResults.length, 2)
-  //   assert(addHolderEventResults.length, 3)
-  // })
+  it('should emit event on adding Author', () => {
+    assert.web3Event(
+      addAuthorResult,
+      {
+        event: 'AuthorAdded'
+      },
+      'The AuthorAdded event is emitted')
+  })
+
+  it('should emit event on adding Holder', () => {
+    assert.web3Event(
+      addHolderResult,
+      {
+        event: 'HolderAdded'
+      },
+      'The HolderAdded event is emitted')
+  })
 
   it('should not add Author with empty name', async () => {
     let error
@@ -106,7 +85,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   })
 
   it('should add and correctly read Item', async () => {
-    await instance.AddItem('Item 1', 888, 1, 2)
+    addItemResult = await instance.AddItem('Item 1', 888, 1, 2)
 
     let length = await instance.GetItemsLength()
     assert.equal(length, 1)
@@ -123,9 +102,14 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(item.patronAddress, 0)
   })
 
-  // it('should emit AddItem event', () => {
-  //   assert(addItemEventResults.length, 1)
-  // })
+  it('should emit event on adding Item', () => {
+    assert.web3Event(
+      addItemResult,
+      {
+        event: 'ItemAdded'
+      },
+      'The ItemAdded event is emitted')
+  })
 
   it('should not add Item with empty name', async () => {
     let error
