@@ -99,7 +99,6 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(item.authorId, 1)
     assert.equal(item.holderId, 2)
     assert.equal(item.currentBid, web3.toWei(1, 'ether'))
-    assert.equal(item.tabletDueDate, 0)
     assert.equal(item.patronAddress, 0)
   })
 

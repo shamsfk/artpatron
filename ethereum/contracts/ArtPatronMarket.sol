@@ -16,7 +16,12 @@ contract ArtPatronMarket is ArtPatronManagement {
 
         Item storage item = items[_itemId];
 
-        require(msg.value == this.GetPatronshipPrice(_itemId));
+        require(msg.value > this.GetPatronshipPrice(_itemId));
         require(msg.sender != item.patronAddress);
+
+        item.currentBid = msg.value;
+        item.patronAddress = msg.sender;
+
+        emit PatronshipBought(_itemId);
     }
 }

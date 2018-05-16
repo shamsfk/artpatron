@@ -13,7 +13,6 @@ contract ArtPatronData {
         uint holderId;
         uint creationDate;
         uint currentBid;
-        uint tabletDueDate;
         address patronAddress;
     }
 
@@ -56,7 +55,6 @@ contract ArtPatronData {
             uint holderId,
             uint creationDate,
             uint currentBid,
-            uint tabletDueDate,
             address patronAddress
         )
     {
@@ -69,7 +67,6 @@ contract ArtPatronData {
         holderId = item.holderId;
         creationDate = item.creationDate;
         currentBid = item.currentBid;
-        tabletDueDate = item.tabletDueDate;
         patronAddress = item.patronAddress;
     }
 

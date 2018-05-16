@@ -29,7 +29,6 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
             _holderId,
             _creationDate,
             1 ether,
-            0,
             0
         ));
 
