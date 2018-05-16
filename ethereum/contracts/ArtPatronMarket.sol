@@ -5,6 +5,8 @@ import "./ArtPatronManagement.sol";
 contract ArtPatronMarket is ArtPatronManagement {
     mapping(address => uint) public addressToWithdrawlAmount;
 
+    event PatronshipBought(uint itemId);
+
     function GetPatronshipPrice(uint _itemId) external view returns(uint) {
         return items[_itemId].currentBid * 15000 / 10000;
     }
