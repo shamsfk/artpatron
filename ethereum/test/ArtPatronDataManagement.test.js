@@ -36,7 +36,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   it('should not allow not an owner to change collectorAddress', async () => {
     let error
     try {
-      await instance.SetCollectorAddress(accounts[2], {from: accounts[1]})
+      await instance.SetCollectorAddress(accounts[2], { from: accounts[1] })
     } catch (err) {
       error = err
     }
@@ -93,10 +93,10 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   })
 
   it('should correctly read Authors', async () => {
-    let [name, id, birthDate] = await instance.GetAuthorData(0)
-    assert.equal(name, 'Monet1')
-    assert.equal(id, 0)
-    assert.equal(birthDate, 71)
+    let author = utils.getAuhtorObject(await instance.GetAuthorData(0))
+    assert.equal(author.name, 'Monet1')
+    assert.equal(author.id, 0)
+    assert.equal(author.birthDate, 71)
   })
 
   it('should correctly read Holder', async () => {
@@ -189,7 +189,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   it('should not allow not an owner to change holderId', async () => {
     let error
     try {
-      await instance.ChangeItemHolder(1, 1, {from: accounts[1]})
+      await instance.ChangeItemHolder(1, 1, { from: accounts[1] })
     } catch (err) {
       error = err
     }

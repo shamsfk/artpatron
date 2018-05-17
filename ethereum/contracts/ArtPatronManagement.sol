@@ -32,7 +32,7 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
 
         items.push(Item(
             _name,
-            items.length - 1,
+            items.length,
             _authorId,
             _holderId,
             _creationDate,
@@ -48,7 +48,7 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         public onlyOwner
     {
         require(bytes(_name).length > 0);
-        authors.push(Author(_name, authors.length - 1, _birthDate));
+        authors.push(Author(_name, authors.length, _birthDate));
 
         emit AuthorAdded(authors.length - 1);
     }
@@ -57,7 +57,7 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         public onlyOwner
     {
         require(bytes(_name).length > 0);
-        holders.push(Holder(_name, holders.length - 1, _countryId));
+        holders.push(Holder(_name, holders.length, _countryId));
 
         emit HolderAdded(holders.length - 1);
     }
