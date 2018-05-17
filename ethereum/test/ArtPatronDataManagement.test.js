@@ -23,6 +23,14 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     await instance.AddHolder('Museum3', 73)
   })
 
+  it('should allow owner to change collectorAddress', async () => {
+    assert.ok(false)
+  })
+
+  it('should not allow not an owner to change collectorAddress', async () => {
+    assert.ok(false)
+  })
+
   it('should add Authors and Holders', async () => {
     let length = await instance.GetAuthorsLength()
     assert.equal(length, 2)
@@ -86,7 +94,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   })
 
   it('should add and correctly read Item', async () => {
-    addItemResult = await instance.AddItem('Item 1', 888, 1, 2)
+    addItemResult = await instance.AddItem('Item 1', 888, 777, 1, 2)
 
     let length = await instance.GetItemsLength()
     assert.equal(length, 1)
@@ -96,6 +104,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(item.name, 'Item 1')
     assert.equal(item.id, 0)
     assert.equal(item.creationDate, 888)
+    assert.equal(item.marketDate, 777)
     assert.equal(item.authorId, 1)
     assert.equal(item.holderId, 2)
     assert.equal(item.currentBid, web3.toWei(1, 'ether'))
@@ -145,7 +154,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   })
 
   it('should allow owner to change holderId', async () => {
-    await instance.AddItem('Item 2', 888, 0, 0)
+    await instance.AddItem('Item 2', 888, 777, 0, 0)
     let item = utils.getItemObject(await instance.GetItemData(1))
     assert.equal(item.holderId, 0)
 

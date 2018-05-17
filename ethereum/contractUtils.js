@@ -9,6 +9,7 @@ module.exports = {
       holderId,
       creationDate,
       currentBid,
+      marketDate,
       patronAddress
     ] = tuple
 
@@ -19,6 +20,7 @@ module.exports = {
       holderId: holderId.toNumber(),
       creationDate: creationDate.toNumber(),
       currentBid: currentBid.toNumber(),
+      marketDate: marketDate.toNumber(),
       patronAddress
     }
   },

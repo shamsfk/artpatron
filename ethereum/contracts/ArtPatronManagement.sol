@@ -4,14 +4,22 @@ import "./ArtPatronData.sol";
 import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ArtPatronManagement is ArtPatronData, Ownable {
+    address collectorAddress;
+
     event ItemAdded(uint itemId);
     event AuthorAdded(uint authorId);
     event HolderAdded(uint holderId);
     event ItemHolderChanged(uint itemId);
 
+    function SetCollectorAddress(address ca) public onlyOwner {
+        require(ca != 0);
+        collectorAddress = ca;
+    }
+
     function AddItem(
         string _name,
         uint _creationDate,
+        uint _marketDate,
         uint _authorId,
         uint _holderId
     )
@@ -29,6 +37,7 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
             _holderId,
             _creationDate,
             1 ether,
+            _marketDate,
             0
         ));
 

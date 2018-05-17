@@ -1,4 +1,4 @@
-/* global artifacts contract it assert before web3 */
+/* global artifacts contract it assert before  */
 
 require('truffle-test-utils').init()
 
@@ -13,7 +13,7 @@ contract('ArtPatronMarket', (accounts) => {
 
     await instance.AddAuthor('Monet', 73)
     await instance.AddHolder('Museum', 73)
-    await instance.AddItem('Item 1', 888, 0, 0)
+    await instance.AddItem('Item 1', 888, 777, 0, 0)
   })
 
   it('should allow initial purchase of an Item', async () => {
@@ -21,6 +21,22 @@ contract('ArtPatronMarket', (accounts) => {
   })
 
   it('should emit event on a purchase', async () => {
+    assert.ok(false)
+  })
+
+  it('should transfer reward to previous patron', async () => {
+    assert.ok(false)
+  })
+
+  it('should transfer fee to colletorAddress', async () => {
+    assert.ok(false)
+  })
+
+  it('should allow initial purchase of an Item', async () => {
+    assert.ok(false)
+  })
+
+  it('should not allow purchase if collectorAddress is 0', async () => {
     assert.ok(false)
   })
 

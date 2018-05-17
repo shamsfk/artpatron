@@ -1,23 +1,35 @@
 pragma solidity ^0.4.21;
 
 import "./ArtPatronManagement.sol";
+import "../../node_modules/zeppelin-solidity/contracts/payment/PullPayment.sol";
 
-contract ArtPatronMarket is ArtPatronManagement {
-    mapping(address => uint) public addressToWithdrawlAmount;
-
+contract ArtPatronMarket is ArtPatronManagement, PullPayment {
     event PatronshipBought(uint itemId);
 
     function GetPatronshipPrice(uint _itemId) external view returns(uint) {
-        return items[_itemId].currentBid * 15000 / 10000;
+        return items[_itemId].currentBid * 15000 / 10000; // 150%
+    }
+
+    function GetPatronshipReward(uint _itemId) external view returns(uint) {
+        return items[_itemId].currentBid * 14000 / 10000; // 140%
+        // 7% left goes to a holder, 3% left goes to the foundation
     }
 
     function BuyPatronship (uint _itemId) external payable {
+        require(collectorAddress != 0);
         require(_itemId < items.length);
 
         Item storage item = items[_itemId];
 
-        require(msg.value > this.GetPatronshipPrice(_itemId));
+        uint price = this.GetPatronshipPrice(_itemId);
+        uint reward = this.GetPatronshipReward(_itemId);
+
+        require(msg.value > price);
         require(msg.sender != item.patronAddress);
+
+        asyncSend(msg.sender, reward);
+
+        asyncSend(collectorAddress, price - reward);
 
         item.currentBid = msg.value;
         item.patronAddress = msg.sender;
