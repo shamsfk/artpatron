@@ -18,12 +18,12 @@ contract ArtPatronData {
     }
 
     struct Author {
-        string name;    // author's name
-        uint id;        // index of an author in authors array
-        uint birthDate; // birth date of an author
+        string name;        // author's name
+        uint id;            // index of an author in authors array
+        uint birthDate;     // birth date of an author
     }
 
-    // Holder is an organisation that has Items like a museum or an art gallery
+    // Holder is an organisation that owns Items (like a museum or an art gallery)
     struct Holder {
         string name;        // holder's name
         uint id;            // index of a holder in holders array
@@ -58,7 +58,7 @@ contract ArtPatronData {
     /**
     * @dev Data of a single item
     * @param _itemId Index of an item in items array
-    * @return Tuple with item's data
+    * @return Tuple with item's data (use contractUtils.js to convert to js object)
     */
     function GetItemData(uint _itemId) external view
         returns (
@@ -88,7 +88,7 @@ contract ArtPatronData {
     /**
     * @dev Data of a single author
     * @param _authorId Index of an author in authors array
-    * @return Tuple with author's data
+    * @return Tuple with author's data (use contractUtils.js to convert to js object)
     */
     function GetAuthorData(uint _authorId) external view
         returns (
@@ -108,7 +108,7 @@ contract ArtPatronData {
     /**
     * @dev Data of a single item
     * @param _holderId Index of an holder in holders array
-    * @return Tuple with holder's data
+    * @return Tuple with holder's data (use contractUtils.js to convert to js object)
     */
     function GetHolderData(uint _holderId) external view
         returns (

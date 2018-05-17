@@ -4,7 +4,7 @@ import "./ArtPatronData.sol";
 import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract ArtPatronManagement is ArtPatronData, Ownable {
-    address collectorAddress; // address that collects fees and museum rewards
+    address public collectorAddress; // address that collects fees and museum rewards
 
     event ItemAdded(uint itemId);
     event AuthorAdded(uint authorId);

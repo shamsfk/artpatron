@@ -24,11 +24,24 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   })
 
   it('should allow owner to change collectorAddress', async () => {
-    assert.ok(false)
+    let res = await instance.collectorAddress()
+    assert.equal(res, 0)
+
+    await instance.SetCollectorAddress(accounts[1])
+
+    res = await instance.collectorAddress()
+    assert.equal(res, accounts[1])
   })
 
   it('should not allow not an owner to change collectorAddress', async () => {
-    assert.ok(false)
+    let error
+    try {
+      await instance.SetCollectorAddress(accounts[2], {from: accounts[1]})
+    } catch (err) {
+      error = err
+    }
+
+    assert.ok(error)
   })
 
   it('should add Authors and Holders', async () => {
