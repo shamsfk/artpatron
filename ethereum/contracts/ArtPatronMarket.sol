@@ -27,9 +27,12 @@ contract ArtPatronMarket is ArtPatronManagement, PullPayment {
         require(msg.value > price);
         require(msg.sender != item.patronAddress);
 
-        asyncSend(msg.sender, reward);
-
-        asyncSend(collectorAddress, price - reward);
+        if (item.patronAddress != 0) {
+            asyncSend(item.patronAddress, reward);
+            asyncSend(collectorAddress, price - reward);
+        } else {
+            asyncSend(collectorAddress, msg.value);
+        }
 
         item.currentBid = msg.value;
         item.patronAddress = msg.sender;
