@@ -11,10 +11,22 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
     event HolderAdded(uint holderId);
     event ItemHolderChanged(uint itemId);
 
+    /**
+    * @dev Sets collectorAddress (to transfr fee to) onlyOwner
+    * @param ca new collector address
+    */
     function SetCollectorAddress(address ca) public onlyOwner {
         collectorAddress = ca;
     }
 
+    /**
+    * @dev Add new Item (onlyOwner)
+    * @param _name Name of an item eg: "Mona Lisa"
+    * @param _creationDate Date of item's creation
+    * @param _marketDate Date when item will be tradeable
+    * @param _authorId Index of an author in authors array
+    * @param _holderId Index of a holder in holders array
+    */
     function AddItem(
         string _name,
         uint _creationDate,
@@ -43,6 +55,11 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         emit ItemAdded(items.length - 1);
     }
 
+    /**
+    * @dev Add new Author (onlyOwner)
+    * @param _name Author's name
+    * @param _birthDate Date of author's birth
+    */
     function AddAuthor(string _name, uint _birthDate)
         public onlyOwner
     {
@@ -52,6 +69,11 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         emit AuthorAdded(authors.length - 1);
     }
 
+    /**
+    * @dev Add new Holder (onlyOwner)
+    * @param _name Hoder's name
+    * @param _countryId Numerical index of a country holder resides in
+    */
     function AddHolder(string _name, uint16 _countryId)
         public onlyOwner
     {
@@ -61,6 +83,11 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
         emit HolderAdded(holders.length - 1);
     }
 
+    /**
+    * @dev Change Item's Holder (onlyOwner)
+    * @param _itemId Index of an item in items array
+    * @param _newHolderId Index of a new holder in holders array
+    */
     function ChangeItemHolder(uint _itemId, uint _newHolderId)
         external onlyOwner
     {

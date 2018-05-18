@@ -7,32 +7,34 @@ pragma solidity ^0.4.21;
 */
 contract ArtPatronData {
     struct Item {
-        string name;            // name of an item eg: "Mona Lisa"
-        uint id;                // index of an item in items array
-        uint authorId;          // index of an author in authors array
-        uint holderId;          // index of a holder in holders array
-        uint creationDate;      // date of item's creation
-        uint currentBid;        // price current patron payed
-        uint marketDate;        // date when item will be tradeable
-        address patronAddress;  // adress of current patron
+        string name;            // Name of an item eg: "Mona Lisa"
+        uint id;                // Index of an item in items array
+        uint authorId;          // Index of an author in authors array
+        uint holderId;          // Index of a holder in holders array
+        uint creationDate;      // Date of item's creation
+        uint currentBid;        // Price current patron payed
+        uint marketDate;        // Date when item will be tradeable
+        address patronAddress;  // Adress of current patron
     }
 
     struct Author {
-        string name;        // author's name
-        uint id;            // index of an author in authors array
-        uint birthDate;     // birth date of an author
+        string name;        // Author's name
+        uint id;            // Index of an author in authors array
+        uint birthDate;     // Birth date of an author
     }
 
     // Holder is an organisation that owns Items (like a museum or an art gallery)
     struct Holder {
-        string name;        // holder's name
-        uint id;            // index of a holder in holders array
-        uint16 countryId;   // numerical index of a country holder resides in
+        string name;        // Holder's name
+        uint id;            // Index of a holder in holders array
+        uint16 countryId;   // Numerical index of a country holder resides in
     }
 
     Item[] internal items;
     Author[] internal authors;
     Holder[] internal holders;
+
+    mapping (address => uint) public ownedItemsCount;
 
     /**
     * @dev Returns length of items array
