@@ -12,7 +12,6 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
     event ItemHolderChanged(uint itemId);
 
     function SetCollectorAddress(address ca) public onlyOwner {
-        require(ca != 0);
         collectorAddress = ca;
     }
 

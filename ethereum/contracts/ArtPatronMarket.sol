@@ -12,7 +12,10 @@ contract ArtPatronMarket is ArtPatronManagement, PullPayment {
 
     function GetPatronshipReward(uint _itemId) external view returns(uint) {
         return items[_itemId].currentBid * 14000 / 10000; // 140%
-        // 7% left goes to a holder, 3% left goes to the foundation
+    }
+
+    function GetPatronshipFee(uint _itemId) external view returns(uint) {
+        return this.GetPatronshipPrice(_itemId) - this.GetPatronshipReward(_itemId);
     }
 
     function BuyPatronship (uint _itemId) external payable {
@@ -23,14 +26,17 @@ contract ArtPatronMarket is ArtPatronManagement, PullPayment {
 
         uint price = this.GetPatronshipPrice(_itemId);
         uint reward = this.GetPatronshipReward(_itemId);
+        uint fee = this.GetPatronshipFee(_itemId);
 
-        require(msg.value > price);
-        require(msg.sender != item.patronAddress);
+        require(msg.value >= price);
+        require(msg.sender != item.patronAddress); // lets not buy from ourselves
 
         if (item.patronAddress != 0) {
+            // if there is a patron send him reward and fee to collector
             asyncSend(item.patronAddress, reward);
-            asyncSend(collectorAddress, price - reward);
+            asyncSend(collectorAddress, fee);
         } else {
+            // if there is no patron (first purchase) send all to collector
             asyncSend(collectorAddress, msg.value);
         }
 
