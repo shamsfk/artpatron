@@ -2,13 +2,13 @@
   <div class="card">
     <div class="card-image">
       <router-link :to="itemLink">
-        <img :src="itemImage" alt="Placemuseum image">
+        <img :src="itemImage" alt="Plac emuseum image">
       </router-link>
     </div>
 
     <div class="card-content">
       <router-link :to="itemLink">
-        <img src="https://bulma.io/images/placemuseums/96x96.png" alt="Place museum image" title="Tretyakovskaya gallery">
+        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Place museum image" title="Tretyakovskaya gallery">
       </router-link>
       <div class="card-title">
         <router-link class="title" :to="itemLink">
@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: 'Card',
+  name: 'ItemCard',
   props: ['item'],
   computed: {
     itemLink: function () {

@@ -2,23 +2,23 @@
   <div class="gallery">
     <h1 class="title">Gallery</h1>
     <div class="cards-list">
-      <card v-for="item in items" :key="item.id" :item="item"></card>
+      <item-card v-for="item in items" :key="item.id" :item="item"></item-card>
     </div>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
-import Card from './Card'
+import ItemCard from './ItemCard'
 
 export default {
-  name: 'Gallery',
+  name: 'ItemsGallery',
   data () {
     return {
     }
   },
   components: {
-    Card
+    ItemCard
   },
   computed: {
     ...mapGetters([

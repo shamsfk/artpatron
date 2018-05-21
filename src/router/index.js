@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Admin from '@/components/Admin.vue'
-import Gallery from '@/components/Gallery.vue'
-import Item from '@/components/Item.vue'
-import Authors from '@/components/Authors.vue'
-import Museums from '@/components/Museums.vue'
+import Gallery from '@/components/Gallery/ItemsGallery.vue'
+import Item from '@/components/Gallery/Item.vue'
+import Authors from '@/components/Authors/Authors.vue'
+import Museums from '@/components/Museums/Museums.vue'
 import How from '@/components/How.vue'
 import FAQ from '@/components/FAQ.vue'
 import Profile from '@/components/Profile.vue'
@@ -20,12 +20,12 @@ export default new Router({
     },
     {
       path: '/gallery',
-      name: 'Gallery',
+      name: 'ItemsGallery',
       component: Gallery
     },
     {
       path: '/gallery/:item',
-      name: 'GalleryItem',
+      name: 'Item',
       component: Item
     },
     {
