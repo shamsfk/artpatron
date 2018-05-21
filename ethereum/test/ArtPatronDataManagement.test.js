@@ -8,9 +8,9 @@ var ArtPatron = artifacts.require('./ArtPatron.sol')
 contract('ArtPatronData & ArtPatronManagement', (accounts) => {
   let instance
   let addAuthorResult
-  let addHolderResult
+  let addMuseumResult
   let addItemResult
-  let changeItemHolderResult
+  let changeItemMuseumResult
 
   before(async () => {
     instance = await ArtPatron.deployed()
@@ -18,9 +18,9 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     addAuthorResult = await instance.AddAuthor('Monet1', 71)
     await instance.AddAuthor('Monet2', 72)
 
-    addHolderResult = await instance.AddHolder('Museum1', 71)
-    await instance.AddHolder('Museum2', 72)
-    await instance.AddHolder('Museum3', 73)
+    addMuseumResult = await instance.AddMuseum('Museum1', 71)
+    await instance.AddMuseum('Museum2', 72)
+    await instance.AddMuseum('Museum3', 73)
   })
 
   it('should allow owner to change collectorAddress', async () => {
@@ -44,11 +44,11 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.ok(error)
   })
 
-  it('should add Authors and Holders', async () => {
+  it('should add Authors and Museums', async () => {
     let length = await instance.GetAuthorsLength()
     assert.equal(length, 2)
 
-    length = await instance.GetHoldersLength()
+    length = await instance.GetMuseumsLength()
     assert.equal(length, 3)
   })
 
@@ -61,13 +61,13 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
       'The AuthorAdded event is emitted')
   })
 
-  it('should emit event on adding Holder', () => {
+  it('should emit event on adding Museum', () => {
     assert.web3Event(
-      addHolderResult,
+      addMuseumResult,
       {
-        event: 'HolderAdded'
+        event: 'MuseumAdded'
       },
-      'The HolderAdded event is emitted')
+      'The MuseumAdded event is emitted')
   })
 
   it('should not add Author with empty name', async () => {
@@ -81,10 +81,10 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.ok(error)
   })
 
-  it('should not add Holder with empty name', async () => {
+  it('should not add Museum with empty name', async () => {
     let error
     try {
-      await instance.AddHolder('', 71)
+      await instance.AddMuseum('', 71)
     } catch (err) {
       error = err
     }
@@ -99,8 +99,8 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(author.birthDate, 71)
   })
 
-  it('should correctly read Holder', async () => {
-    let [name, id, countryId] = await instance.GetHolderData(0)
+  it('should correctly read Museum', async () => {
+    let [name, id, countryId] = await instance.GetMuseumData(0)
     assert.equal(name, 'Museum1')
     assert.equal(id, 0)
     assert.equal(countryId, 71)
@@ -119,7 +119,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.equal(item.creationDate, 888)
     assert.equal(item.marketDate, 777)
     assert.equal(item.authorId, 1)
-    assert.equal(item.holderId, 2)
+    assert.equal(item.museumId, 2)
     assert.equal(item.currentBid, web3.toWei(1, 'ether'))
     assert.equal(item.patronAddress, 0)
   })
@@ -155,7 +155,7 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.ok(error)
   })
 
-  it('should not add Item with invalid holderId', async () => {
+  it('should not add Item with invalid museumId', async () => {
     let error
     try {
       await instance.AddItem('Item', 888, 0, 5)
@@ -166,30 +166,30 @@ contract('ArtPatronData & ArtPatronManagement', (accounts) => {
     assert.ok(error)
   })
 
-  it('should allow owner to change holderId', async () => {
+  it('should allow owner to change museumId', async () => {
     await instance.AddItem('Item 2', 888, 777, 0, 0)
     let item = utils.getItemObject(await instance.GetItemData(1))
-    assert.equal(item.holderId, 0)
+    assert.equal(item.museumId, 0)
 
-    changeItemHolderResult = await instance.ChangeItemHolder(1, 2)
+    changeItemMuseumResult = await instance.ChangeItemMuseum(1, 2)
     item = utils.getItemObject(await instance.GetItemData(1))
-    assert.equal(item.holderId, 2)
+    assert.equal(item.museumId, 2)
   })
 
-  it('should emit event on changing holder', () => {
+  it('should emit event on changing museum', () => {
     assert.web3Event(
-      changeItemHolderResult,
+      changeItemMuseumResult,
       {
-        event: 'ItemHolderChanged'
+        event: 'ItemMuseumChanged'
       },
-      'The ItemHolderChanged event is emitted'
+      'The ItemMuseumChanged event is emitted'
     )
   })
 
-  it('should not allow not an owner to change holderId', async () => {
+  it('should not allow not an owner to change museumId', async () => {
     let error
     try {
-      await instance.ChangeItemHolder(1, 1, { from: accounts[1] })
+      await instance.ChangeItemMuseum(1, 1, { from: accounts[1] })
     } catch (err) {
       error = err
     }

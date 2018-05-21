@@ -24,7 +24,7 @@ export default {
     ...mapGetters([
       'items',
       'authors',
-      'holders'
+      'museums'
     ])
   }
 }

@@ -17,7 +17,7 @@ new Vue({
     let contract = await getContract()
 
     await initAuthorsData(contract)
-    await initHoldersData(contract)
+    await initMuseumsData(contract)
     await initItemsData(contract)
 
     await initEvents(contract)
@@ -37,17 +37,17 @@ async function initAuthorsData (contract) {
   store.commit('setAuthors', authors)
 }
 
-async function initHoldersData (contract) {
-  let holders = []
-  let holderssLength = await contract.GetHoldersLength()
+async function initMuseumsData (contract) {
+  let museums = []
+  let museumssLength = await contract.GetMuseumsLength()
 
-  for (let i = 0; i < holderssLength; i++) {
-    let holderData = await contract.GetHolderData(i)
-    let holderObject = contractUtils.getHolderObject(holderData)
-    holders.push(holderObject)
+  for (let i = 0; i < museumssLength; i++) {
+    let museumData = await contract.GetMuseumData(i)
+    let museumObject = contractUtils.getMuseumObject(museumData)
+    museums.push(museumObject)
   }
 
-  store.commit('setHolders', holders)
+  store.commit('setMuseums', museums)
 }
 
 async function initItemsData (contract) {
@@ -81,19 +81,19 @@ async function initEvents (contract) {
     }
   })
 
-  let addHolderEvent = contract.HolderAdded()
-  addHolderEvent.watch(async function (err, result) {
+  let addMuseumEvent = contract.MuseumAdded()
+  addMuseumEvent.watch(async function (err, result) {
     if (err) {
       console.log(err)
     } else {
-      let id = result.args.holderId.toNumber()
+      let id = result.args.museumId.toNumber()
 
-      let obj = await contract.GetHolderData(id)
-      let newHolder = contractUtils.getHolderObject(obj)
+      let obj = await contract.GetMuseumData(id)
+      let newMuseum = contractUtils.getMuseumObject(obj)
 
       // Check if id is not already on the list
-      if (id >= store.state.holders.length) {
-        store.commit('changeHolder', newHolder)
+      if (id >= store.state.museums.length) {
+        store.commit('changeMuseum', newMuseum)
       }
     }
   })

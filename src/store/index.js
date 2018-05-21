@@ -8,13 +8,13 @@ export default new Vuex.Store({
     web3: null,
     items: [],
     authors: [],
-    holders: []
+    museums: []
   },
   getters: {
     web3: state => state.web3,
     items: state => state.items,
     authors: state => state.authors,
-    holders: state => state.holders
+    museums: state => state.museums
   },
   mutations: {
     setWeb3: (state, payload) => { state.web3 = payload },
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     setAuthors: (state, payload) => { state.authors = payload },
     changeAuthor: (state, payload) => { Vue.set(state.authors, payload.id, payload) },
 
-    setHolders: (state, payload) => { state.holders = payload },
-    changeHolder: (state, payload) => { Vue.set(state.holders, payload.id, payload) }
+    setMuseums: (state, payload) => { state.museums = payload },
+    changeMuseum: (state, payload) => { Vue.set(state.museums, payload.id, payload) }
   }
 })

@@ -6,7 +6,7 @@ module.exports = {
       name,
       id,
       authorId,
-      holderId,
+      museumId,
       creationDate,
       currentBid,
       marketDate,
@@ -17,7 +17,7 @@ module.exports = {
       name,
       id: id.toNumber(),
       authorId: authorId.toNumber(),
-      holderId: holderId.toNumber(),
+      museumId: museumId.toNumber(),
       creationDate: creationDate.toNumber(),
       currentBid: currentBid.toNumber(),
       marketDate: marketDate.toNumber(),
@@ -39,7 +39,7 @@ module.exports = {
     }
   },
 
-  getHolderObject: function (tuple) {
+  getMuseumObject: function (tuple) {
     let [
       name,
       id,

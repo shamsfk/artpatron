@@ -4,7 +4,7 @@
     <div class="admin-block">
       <h3>Stats</h3>
       Authors: <strong>{{authors.length}}</strong> &nbsp;
-      Holders: <strong>{{holders.length}}</strong> &nbsp;
+      Museums: <strong>{{museums.length}}</strong> &nbsp;
       Items: <strong>{{items.length}}</strong> &nbsp;
     </div>
 
@@ -12,7 +12,7 @@
       <h3>Add Author</h3>
       <div class="admin-block-input">
         <label for="authorName">Author's name &nbsp;</label>
-        <input type="text" name="authorName" v-model="authorName" placeholder="Monet">
+        <input type="text" name="authorName" v-model="authorName" placemuseum="Monet">
       </div>
 
       <div class="admin-block-input">
@@ -24,35 +24,35 @@
     </div>
 
     <div class="admin-block">
-      <h3>Add Holder</h3>
+      <h3>Add Museum</h3>
       <div class="admin-block-input">
-        <label for="holderName">Holder's name &nbsp;</label>
-        <input type="text" name="holderName" v-model="holderName" placeholder="Tretyakivskay gallery">
+        <label for="museumName">Museum's name &nbsp;</label>
+        <input type="text" name="museumName" v-model="museumName" placemuseum="Tretyakivskay gallery">
       </div>
 
       <div class="admin-block-input">
-        <label for="holderCountryId">Holder's country id &nbsp;</label>
-        <input type="number" name="holderCountryId" v-model="holderCountryId" placeholder="7">
+        <label for="museumCountryId">Museum's country id &nbsp;</label>
+        <input type="number" name="museumCountryId" v-model="museumCountryId" placemuseum="7">
       </div>
 
-      <button :disabled="holderDisabled" @click="addHolder">Add Holder</button>
+      <button :disabled="museumDisabled" @click="addMuseum">Add Museum</button>
     </div>
 
     <div class="admin-block">
       <h3>Add Item</h3>
       <div class="admin-block-input">
         <label for="itemName">Item's name &nbsp;</label>
-        <input type="text" name="itemName" v-model="itemName" placeholder="Some item">
+        <input type="text" name="itemName" v-model="itemName" placemuseum="Some item">
       </div>
 
       <div class="admin-block-input">
         <label for="itemAuthorId">Item's author id &nbsp;</label>
-        <input type="number" name="itemAuthorId" v-model="itemAuthorId" placeholder="3">
+        <input type="number" name="itemAuthorId" v-model="itemAuthorId" placemuseum="3">
       </div>
 
       <div class="admin-block-input">
-        <label for="itemHolderId">Item's holder id &nbsp;</label>
-        <input type="number" name="itemHoderId" v-model="itemHolderId" placeholder="5">
+        <label for="itemMuseumId">Item's museum id &nbsp;</label>
+        <input type="number" name="itemHoderId" v-model="itemMuseumId" placemuseum="5">
       </div>
 
       <div class="admin-block-input">
@@ -75,11 +75,11 @@ export default {
     return {
       authorName: '',
       authorBirthDate: '',
-      holderName: '',
-      holderCountryId: '',
+      museumName: '',
+      museumCountryId: '',
       itemName: '',
       itemAuthorId: '',
-      itemHolderId: '',
+      itemMuseumId: '',
       itemCreationDate: '',
       contract: 0
     }
@@ -92,11 +92,11 @@ export default {
         console.log('Adding Author failed with error:\n', err)
       }
     },
-    addHolder: async function () {
+    addMuseum: async function () {
       try {
-        await this.contract.AddHolder(this.holderName, this.holderCountryId)
+        await this.contract.AddMuseum(this.museumName, this.museumCountryId)
       } catch (err) {
-        console.log('Adding Holder failed with error:\n', err)
+        console.log('Adding Museum failed with error:\n', err)
       }
     },
     addItem: async function () {
@@ -105,7 +105,7 @@ export default {
           this.itemName,
           Date.parse(this.itemCreationDate),
           this.itemAuthorId,
-          this.itemHolderId
+          this.itemMuseumId
         )
       } catch (err) {
         console.log('Adding Item failed with error:\n', err)
@@ -117,7 +117,7 @@ export default {
       'web3',
       'items',
       'authors',
-      'holders'
+      'museums'
     ]),
     authorDisabled: function () {
       if (this.authorName === '' || this.authorBirthDate === '') {
@@ -125,8 +125,8 @@ export default {
       }
       return false
     },
-    holderDisabled: function () {
-      if (this.holderName === '' || this.holderCountryId === '') {
+    museumDisabled: function () {
+      if (this.museumName === '' || this.museumCountryId === '') {
         return true
       }
       return false
@@ -135,7 +135,7 @@ export default {
       if (
         this.itemName === '' ||
         this.itemAuthorId === '' ||
-        this.itemHolderId === '' ||
+        this.itemMuseumId === '' ||
         this.itemCreationDate === ''
       ) {
         return true

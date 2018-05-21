@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
 /** @title Art Patron Data constract
-* @dev Holds data of all Items, Authors and Holders
+* @dev Holds data of all Items, Authors and Museums
 * @dev Data is stored in arrays
 * @dev There is no write access in this contract
 */
@@ -10,7 +10,7 @@ contract ArtPatronData {
         string name;            // Name of an item eg: "Mona Lisa"
         uint id;                // Index of an item in items array
         uint authorId;          // Index of an author in authors array
-        uint holderId;          // Index of a holder in holders array
+        uint museumId;          // Index of a museum in museums array
         uint creationDate;      // Date of item's creation
         uint currentBid;        // Price current patron payed
         uint marketDate;        // Date when item will be tradeable
@@ -23,16 +23,15 @@ contract ArtPatronData {
         uint birthDate;     // Birth date of an author
     }
 
-    // Holder is an organisation that owns Items (like a museum or an art gallery)
-    struct Holder {
-        string name;        // Holder's name
-        uint id;            // Index of a holder in holders array
-        uint16 countryId;   // Numerical index of a country holder resides in
+    struct Museum {
+        string name;        // Museum's name
+        uint id;            // Index of a museum in museums array
+        uint16 countryId;   // Numerical index of a country museum resides in
     }
 
     Item[] internal items;
     Author[] internal authors;
-    Holder[] internal holders;
+    Museum[] internal museums;
 
     mapping (address => uint) public ownedItemsCount;
 
@@ -51,10 +50,10 @@ contract ArtPatronData {
     }
 
     /**
-    * @dev Returns length of holders array
+    * @dev Returns length of museums array
     */
-    function GetHoldersLength() external view returns(uint) {
-        return holders.length;
+    function GetMuseumsLength() external view returns(uint) {
+        return museums.length;
     }
 
     /**
@@ -67,7 +66,7 @@ contract ArtPatronData {
             string name,
             uint id,
             uint authorId,
-            uint holderId,
+            uint museumId,
             uint creationDate,
             uint currentBid,
             uint marketDate,
@@ -80,7 +79,7 @@ contract ArtPatronData {
         name = item.name;
         id = item.id;
         authorId = item.authorId;
-        holderId = item.holderId;
+        museumId = item.museumId;
         creationDate = item.creationDate;
         currentBid = item.currentBid;
         marketDate = item.marketDate;
@@ -109,21 +108,21 @@ contract ArtPatronData {
 
     /**
     * @dev Data of a single item
-    * @param _holderId Index of an holder in holders array
-    * @return Tuple with holder's data (use contractUtils.js to convert to js object)
+    * @param _museumId Index of an museum in museums array
+    * @return Tuple with museum's data (use contractUtils.js to convert to js object)
     */
-    function GetHolderData(uint _holderId) external view
+    function GetMuseumData(uint _museumId) external view
         returns (
             string name,
             uint id,
             uint countryId
         )
     {
-        require(holders.length > _holderId);
-        Holder storage holder = holders[_holderId];
+        require(museums.length > _museumId);
+        Museum storage museum = museums[_museumId];
 
-        name = holder.name;
-        id = holder.id;
-        countryId = holder.countryId;
+        name = museum.name;
+        id = museum.id;
+        countryId = museum.countryId;
     }
 }

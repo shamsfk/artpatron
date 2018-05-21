@@ -8,8 +8,8 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
 
     event ItemAdded(uint itemId);
     event AuthorAdded(uint authorId);
-    event HolderAdded(uint holderId);
-    event ItemHolderChanged(uint itemId);
+    event MuseumAdded(uint museumId);
+    event ItemMuseumChanged(uint itemId);
 
     /**
     * @dev Sets collectorAddress (to transfr fee to) onlyOwner
@@ -25,19 +25,19 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
     * @param _creationDate Date of item's creation
     * @param _marketDate Date when item will be tradeable
     * @param _authorId Index of an author in authors array
-    * @param _holderId Index of a holder in holders array
+    * @param _museumId Index of a museum in museums array
     */
     function AddItem(
         string _name,
         uint _creationDate,
         uint _marketDate,
         uint _authorId,
-        uint _holderId
+        uint _museumId
     )
         public onlyOwner
     {
         require(authors.length > _authorId);
-        require(holders.length > _holderId);
+        require(museums.length > _museumId);
 
         require(bytes(_name).length > 0);
 
@@ -45,7 +45,7 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
             _name,
             items.length,
             _authorId,
-            _holderId,
+            _museumId,
             _creationDate,
             1 ether,
             _marketDate,
@@ -70,29 +70,29 @@ contract ArtPatronManagement is ArtPatronData, Ownable {
     }
 
     /**
-    * @dev Add new Holder (onlyOwner)
+    * @dev Add new Museum (onlyOwner)
     * @param _name Hoder's name
-    * @param _countryId Numerical index of a country holder resides in
+    * @param _countryId Numerical index of a country museum resides in
     */
-    function AddHolder(string _name, uint16 _countryId)
+    function AddMuseum(string _name, uint16 _countryId)
         public onlyOwner
     {
         require(bytes(_name).length > 0);
-        holders.push(Holder(_name, holders.length, _countryId));
+        museums.push(Museum(_name, museums.length, _countryId));
 
-        emit HolderAdded(holders.length - 1);
+        emit MuseumAdded(museums.length - 1);
     }
 
     /**
-    * @dev Change Item's Holder (onlyOwner)
+    * @dev Change Item's Museum (onlyOwner)
     * @param _itemId Index of an item in items array
-    * @param _newHolderId Index of a new holder in holders array
+    * @param _newMuseumId Index of a new museum in museums array
     */
-    function ChangeItemHolder(uint _itemId, uint _newHolderId)
+    function ChangeItemMuseum(uint _itemId, uint _newMuseumId)
         external onlyOwner
     {
-        items[_itemId].holderId = _newHolderId;
+        items[_itemId].museumId = _newMuseumId;
 
-        emit ItemHolderChanged(_itemId);
+        emit ItemMuseumChanged(_itemId);
     }
 }

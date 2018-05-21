@@ -14,7 +14,7 @@ contract('ArtPatronMarket', (accounts) => {
     instance = await ArtPatron.deployed()
 
     await instance.AddAuthor('Monet', 73)
-    await instance.AddHolder('Museum', 73)
+    await instance.AddMuseum('Museum', 73)
     await instance.AddItem('Item 1', 888, 777, 0, 0)
 
     await instance.SetCollectorAddress(accounts[5])
