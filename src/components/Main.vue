@@ -24,7 +24,7 @@ export default {
 .jumbo {
   height: 100vh;
   background-color: white;
-  background-image: url("/static/images/jumbo5.jpg");
+  background-image: url("/static/images/jumbo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   // background-position: left top;

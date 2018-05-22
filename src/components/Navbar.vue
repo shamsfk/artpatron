@@ -9,9 +9,9 @@
       <router-link class="navbar-item menu" to="/gallery">
         Gallery
       </router-link>
-      <router-link class="navbar-item menu" to="/authors">
+      <!-- <router-link class="navbar-item menu" to="/authors">
         Authors
-      </router-link>
+      </router-link> -->
       <router-link class="navbar-item menu" to="/museums">
         Museums
       </router-link>
