@@ -1,6 +1,7 @@
 <template>
   <div class="How">
     <h1 class="title is-3">How it works</h1>
+    Under consruction...
   </div>
 </template>
 

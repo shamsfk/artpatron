@@ -1,6 +1,7 @@
 <template>
   <div class="Profile">
     <h1 class="title is-3">Profile</h1>
+    Under consruction...
   </div>
 </template>
 

@@ -104,6 +104,7 @@ export default {
         await this.contract.AddItem(
           this.itemName,
           Date.parse(this.itemCreationDate),
+          0,
           this.itemAuthorId,
           this.itemMuseumId
         )
@@ -164,7 +165,6 @@ export default {
 }
 
 .admin-block-input {
-  margin-block-end: .5rem;
+  margin-block-end: 0.5rem;
 }
-
 </style>
