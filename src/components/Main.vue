@@ -24,7 +24,7 @@ export default {
 .jumbo {
   height: 100vh;
   background-color: white;
-  background-image: url("/static/images/jumbo.jpg");
+  background-image: url("/static/images/jumbo5.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   // background-position: left top;
@@ -56,11 +56,13 @@ export default {
   height: auto;
   padding: 1rem;
   border: 0;
+  // text-shadow: 1px 1px 0px #000000;
+  background-color: #999999;
 }
 .link {
   text-decoration: none;
 }
-.link:hover {
-  color: #b66ce7;
+.jumbo-subtitle:hover {
+  background-color: #b66ce7;
 }
 </style>
