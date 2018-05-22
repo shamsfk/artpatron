@@ -30,7 +30,9 @@ body {
   font-weight: 400;
   color: #363636;
   // line-height: 1.5;
-  overflow-y:scroll;
+  overflow-y: scroll;
+  padding: 0;
+  margin: 0;
 }
 
 #app {

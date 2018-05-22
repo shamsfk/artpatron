@@ -8,11 +8,17 @@ import Museums from '@/components/Museums/Museums.vue'
 import How from '@/components/How.vue'
 import FAQ from '@/components/FAQ.vue'
 import Profile from '@/components/Profile.vue'
+import Main from '@/components/Main.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      name: 'Main',
+      component: Main
+    },
     {
       path: '/admin',
       name: 'Admin',
