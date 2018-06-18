@@ -2,29 +2,31 @@
   <div class="item" v-if="itemsReady">
     <h1 class="header">
       {{ item.name }}
+      <router-link class="author" :to="itemLink">
+        - Monet
+      </router-link>
     </h1>
-    <div class="image">
-      <img :src="itemImage" alt="Plac emuseum image">
+    <div class="image" :style="{ backgroundImage: `url('${itemImage}')` }">
+      <!-- <img :src="itemImage" alt="Plac emuseum image"> -->
     </div>
 
     <div class="content">
+
+     <div class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Phasellus nec iaculis mauris.
+
+      </div>
+
       <router-link :to="itemLink">
         <img class="museumimg" src="https://bulma.io/images/placeholders/96x96.png" alt="Place museum image" title="Tretyakovskaya gallery">
         <div class="museumtitle">
           Hermitage
         </div>
       </router-link>
-      <router-link class="author" :to="itemLink">
-        Monet
-      </router-link>
 
-      <div class="description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris.
-        <div class="patron">
+      <div class="patron">
           <div>Patron: <strong>Anonymous</strong></div>
-          <!-- <div>Sience: <strong>10/04/18</strong></div> -->
-        </div>
       </div>
 
     </div>
@@ -69,6 +71,17 @@ export default {
   margin-bottom: 1rem;
 }
 
+.image {
+  width: 100%;
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 .content {
   margin: auto;
   padding: 1.5rem;
@@ -87,30 +100,35 @@ export default {
   padding-top: 0.1rem;
 }
 .museumtitle {
-  text-decoration: none;
   display: inline;
   padding: 0;
   padding-top: 0.1rem;
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .author {
-  width: 100%;
-  word-break: break-word;
   margin: 0;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 400;
   color: #4a4a4a;
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.25;
+  display: inline;
+  font-weight: 200;
 }
 
 .description {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
-.card-patron {
-  padding-top: 1rem;
+.patron {
+  width: 100%;
+  margin-top: 1rem;
 }
 </style>
